@@ -1,0 +1,58 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'org.gretty' version '3.0.1'
+}
+
+group = 'com.jee'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+gretty {
+	//httpPort='8080'
+	contextPath = '/'
+	servletContainer = 'tomcat9'
+	httpsEnabled=true
+}
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	maven{ url'http://maven.aliyun.com/nexus/content/groups/public/' }
+	maven{ url'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
+}
+
+dependencies {
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+	compile group: 'org.hsqldb', name: 'hsqldb', version: '2.5.0'
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.2'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+task dbStart(type: JavaExec) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = 'org.hsqldb.server.Server'
+	workingDir='db'
+}
+
+task dbManager(type: JavaExec) {
+	classpath = sourceSets.main.runtimeClasspath
+	main = 'org.hsqldb.util.DatabaseManagerSwing'
+}
+
+bootRun{
+	standardInput = System.in
+}
