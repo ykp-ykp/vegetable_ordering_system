@@ -1,17 +1,15 @@
 package com.example.vegetableorder.server;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 
 @org.springframework.stereotype.Controller
-@RequestMapping("/Controller")
-public class Controller {
+@RequestMapping("/Dispatch")
+public class Dispatch {
 
-    @RequestMapping("/toligin")
+    @RequestMapping("/tologin")
     public String login(){
         return "login";
     }
@@ -24,8 +22,8 @@ public class Controller {
     @RequestMapping("/to_vegetable_info")
     public String to_vegetable_info(HttpSession session, HttpServletRequest request){
         String vegetablename = request.getParameter("vegetablename");
-        System.out.println(vegetablename);
+        session.setAttribute("vegetablename", vegetablename);
+        //System.out.println(vegetablename);
         return "vegetable_info";
     }
-
 }

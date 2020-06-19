@@ -1,7 +1,5 @@
 package com.example.vegetableorder;
 
-import com.example.vegetableorder.dao.OperateData;
-import com.example.vegetableorder.domain.People;
 import com.example.vegetableorder.domain.Vegetables;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +9,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import java.util.List;
 
 @SpringBootApplication
 public class VegetableorderApplication {

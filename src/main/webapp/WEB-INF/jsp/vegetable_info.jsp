@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.vegetableorder.domain.Vegetables" %>
-<%@ page import="com.example.vegetableorder.dao.OperateData" %><%--
+<%@ page import="com.example.vegetableorder.dao.OperateVegetable" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 2020/6/18
@@ -13,6 +13,9 @@
 <title>天天生鲜-商品详情</title>
 <link rel="stylesheet" type="text/css" href="/css/reset.css">
 <link rel="stylesheet" type="text/css" href="/css/main.css">
+<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/slide.js"></script>
 </head>
 <body>
 <div class="header_con">
@@ -40,7 +43,7 @@
 </div>
 
 <div class="search_bar clearfix">
-	<a href="index.html" class="logo fl"><img src="//images/logo.png"></a>
+	<a href="/Dispatch/toindex" class="logo fl"><img src="/images/logo.png"></a>
 	<div class="search_con fl">
 		<input type="text" class="input_text fl" name="" placeholder="搜索商品">
 		<input type="button" class="input_btn fr" name="" value="搜索">
@@ -53,55 +56,46 @@
 
 <div class="navbar_con">
 	<div class="navbar clearfix">
-		<div class="subnav_con fl">
-			<h1>全部商品分类</h1>
-			<span></span>
-			<ul class="subnav">
-				<li><a href="#" class="fruit">新鲜水果</a></li>
-				<li><a href="#" class="seafood">海鲜水产</a></li>
-				<li><a href="#" class="meet">猪牛羊肉</a></li>
-				<li><a href="#" class="egg">禽类蛋品</a></li>
-				<li><a href="#" class="vegetables">新鲜蔬菜</a></li>
-				<li><a href="#" class="ice">速冻食品</a></li>
-			</ul>
-		</div>
 		<ul class="navlist fl">
-			<li><a href="">首页</a></li>
-			<li class="interval">|</li>
-			<li><a href="">手机生鲜</a></li>
-			<li class="interval">|</li>
-			<li><a href="">抽奖</a></li>
+			<li><a href="/Dispatch/toindex">首页</a></li>
 		</ul>
 	</div>
 </div>
 
 <div class="breadcrumb">
-	<a href="#">全部分类</a>
-	<span>></span>
-	<a href="#">新鲜水果</a>
+	<a href="#">首页</a>
 	<span>></span>
 	<a href="#">商品详情</a>
 </div>
 
+<%--下面是显示某个蔬菜的详细信息，需要从数据库中读取--%>
 <div class="goods_detail_con clearfix">
-	<div class="goods_detail_pic fl"><img src="/images/goods_detail.jpg"></div>
+	<%--现货区需要显示的蔬菜的信息--%>
+	<%
+		//获取要显示的蔬菜的蔬菜名
+		String vegetablename = (String)session.getAttribute("vegetablename");
+		//从数据库获取该对象
+		Vegetables vegetable = new OperateVegetable().getOneVeg(vegetablename);
+		System.out.println(vegetable);
+	%>
+	<div class="goods_detail_pic fl"><img src="<%=vegetable.getImage()%>"></div>
 
 	<div class="goods_detail_list fr">
-		<h3>大兴大棚草莓</h3>
+		<h3>鲜美的<%=vegetable.getName()%></h3>
 		<p>草莓浆果柔软多汁，味美爽口，适合速冻保鲜贮藏。草莓速冻后，可以保持原有的色、香、味，既便于贮藏，又便于外销。</p>
 		<div class="prize_bar">
-			<span class="show_pirze">¥<em>16.80</em></span>
+			<span class="show_pirze">¥<a id="price"><%=vegetable.getPrice()%></a></span>
 			<span class="show_unit">单  位：500g</span>
 		</div>
 		<div class="goods_num clearfix">
 			<div class="num_name fl">数 量：</div>
 			<div class="num_add fl">
-				<input type="text" class="num_show fl" value="1">
-				<a href="javascript:;" class="add fr">+</a>
-				<a href="javascript:;" class="minus fr">-</a>
+				<input type="text" class="num_show fl" value="0" id="weight">
+				<a href="#" class="add fr" id="add">+</a>
+				<a href="#" class="minus fr" id="subtract">-</a>
 			</div>
 		</div>
-		<div class="total">总价：<em>16.80元</em></div>
+		<div class="total" >总价：<em id="totalprice">0</em>元</div>
 		<div class="operate_btn">
 			<a href="javascript:;" class="buy_btn">立即购买</a>
 			<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>
@@ -144,59 +138,28 @@
 	</div>
 </div>
 
-<div class="footer">
-	<div class="foot_link">
-		<a href="#">关于我们</a>
-		<span>|</span>
-		<a href="#">联系我们</a>
-		<span>|</span>
-		<a href="#">招聘人才</a>
-		<span>|</span>
-		<a href="#">友情链接</a>
-	</div>
-	<p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
-	<p>电话：010-****888    京ICP备*******8号</p>
-</div>
-<div class="add_jump"></div>
-
-<script type="text/javascript" src="/js/jquery-1.12.2.js"></script>
 <script type="text/javascript">
-    var $add_x = $('#add_cart').offset().top;
-    var $add_y = $('#add_cart').offset().left;
+    window.onload=function(){
+        var price = document.getElementById('price').innerHTML; //获取id是td的html文本内容
+        document.getElementById('add').onclick = function(){
+            var weight = document.getElementById('weight').value;
+            weight=parseFloat(weight);
+            document.getElementById('weight').value = weight + 1;
+            document.getElementById('totalprice').innerHTML = parseFloat(price) * parseFloat(weight+1);
+        }
+        document.getElementById('subtract').onclick = function(){
+            var weight = document.getElementById('weight').value;
+            weight=parseFloat(weight);
+            if(weight==0){
+                alert("数量不能够小于0")
+			}
+			else{
+                document.getElementById('weight').value = weight - 1;
+                document.getElementById('totalprice').innerHTML = parseFloat(price) * parseFloat(weight-1);
+			}
+        }
 
-    var $to_x = $('#show_count').offset().top;
-    var $to_y = $('#show_count').offset().left;
-
-    $(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})
-    $('#add_cart').click(function(){
-        $(".add_jump").stop().animate({
-                'left': $to_y+7,
-                'top': $to_x+7},
-            "fast", function() {
-                $(".add_jump").fadeOut('fast',function(){
-                    $('#show_count').html(2);
-                });
-
-            });
-    })
+    }
 </script>
-
 </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head>
-
 </html>

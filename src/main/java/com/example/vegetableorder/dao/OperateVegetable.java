@@ -1,10 +1,8 @@
 package com.example.vegetableorder.dao;
 
 
-import com.example.vegetableorder.domain.People;
-import com.example.vegetableorder.domain.People;
+import com.example.vegetableorder.domain.User;
 import com.example.vegetableorder.domain.Vegetables;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataAccessException;
@@ -16,7 +14,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 @Component
-public class OperateData {
+public class OperateVegetable {
 
     ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
     JdbcTemplate jdbcTemplate = new JdbcTemplate(applicationContext.getBean(DataSource.class));
@@ -33,9 +31,13 @@ public class OperateData {
         return jdbcTemplate.query("select * from vegetables",new BeanPropertyRowMapper<>(Vegetables.class));
     }
 
-    public boolean Insert(People stu){
+    public Vegetables getOneVeg(String name){
+        return jdbcTemplate.queryForObject("select * from vegetables where name = ?",new BeanPropertyRowMapper<>(Vegetables.class),name);
+    }
+
+    public boolean Insert(User stu){
         try {
-            jdbcTemplate.update("insert into student VALUES (?,?)",stu.getName(),stu.getPassword());
+            jdbcTemplate.update("insert into student VALUES (null,?,?)",stu.getName(),stu.getPassword());
         } catch (DataAccessException e) {
             e.printStackTrace();
             return false;

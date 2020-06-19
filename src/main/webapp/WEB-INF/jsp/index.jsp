@@ -1,6 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.vegetableorder.domain.Vegetables" %>
-<%@ page import="com.example.vegetableorder.dao.OperateData" %><%--
+<%@ page import="com.example.vegetableorder.dao.OperateVegetable" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 2020/6/18
@@ -26,7 +26,7 @@
                 欢迎您：<em>张 山</em>
             </div>
             <div class="login_btn fl">
-                <a href="/Controller/toligin">登录</a>
+                <a href="/Dispatch/tologin">登录</a>
                 <span>|</span>
                 <a href="/WEB-INF/jsp/register.jsp">注册</a>
             </div>
@@ -43,7 +43,7 @@
 </div>
 
 <div class="search_bar clearfix">
-    <a href="index.jsp" class="logo fl"><img src="/images/logo.png"></a>
+    <a href="/Dispatch/toindex" class="logo fl"><img src="/images/logo.png"></a>
     <div class="search_con fl">
         <input type="text" class="input_text fl" name="" placeholder="搜索商品">
         <input type="button" class="input_btn fr" name="" value="搜索">
@@ -109,7 +109,7 @@
 
     <%--x下面要显示蔬菜，需要获取数据库的蔬菜信息--%>
         <%
-            List<Vegetables> vegetablesList = new OperateData().getAllVeg();
+            List<Vegetables> vegetablesList = new OperateVegetable().getAllVeg();
         %>
     <div class="goods_con clearfix">
         <div class="goods_banner fl"><img src="/images/banner01.jpg"></div>
@@ -119,8 +119,8 @@
                 Vegetables vegetables = vegetablesList.get(i);
             %>
                 <li>
-                    <h4><a href="#"><%=vegetables.getName()%></a></h4>
-                    <a href="/Controller/to_vegetable_info?vegetablename=<%=vegetables.getName()%>"><img src="<%=vegetables.getImage()%>"></a>
+                    <h4><a href="/Dispatch/to_vegetable_info?vegetablename=<%=vegetables.getName()%>"><%=vegetables.getName()%></a></h4>
+                    <a href="/Dispatch/to_vegetable_info?vegetablename=<%=vegetables.getName()%>"><img src="<%=vegetables.getImage()%>"></a>
                     <div class="prize"><%=vegetables.getPrice()%></div>
                 </li>
             <%}
