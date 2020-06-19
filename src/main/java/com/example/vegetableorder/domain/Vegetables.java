@@ -10,6 +10,7 @@ public class Vegetables {
     private double discount;
     private String image;
     private double surplus;
+    private String introduction;
 
     public int getId() {
         return id;
@@ -59,6 +60,14 @@ public class Vegetables {
         this.surplus = surplus;
     }
 
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
     @Override
     public String toString() {
         return "Vegetables{" +
@@ -68,6 +77,8 @@ public class Vegetables {
                 ", discount=" + discount +
                 ", image='" + image + '\'' +
                 ", surplus=" + surplus +
+                ", introduction='" + introduction + '\'' +
                 '}';
     }
+
 }

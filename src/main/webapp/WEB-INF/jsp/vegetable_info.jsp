@@ -16,6 +16,7 @@
 <script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/js/slide.js"></script>
+<script type="text/javascript" src="/js/add_subtract.js"></script>
 </head>
 <body>
 <div class="header_con">
@@ -26,7 +27,7 @@
 				欢迎您：<em>张 山</em>
 			</div>
 			<div class="login_btn fl">
-				<a href="login.html">登录</a>
+				<a href="/Dispatch/tologin">登录</a>
 				<span>|</span>
 				<a href="register.html">注册</a>
 			</div>
@@ -63,7 +64,7 @@
 </div>
 
 <div class="breadcrumb">
-	<a href="#">首页</a>
+	<a href="/Dispatch/toindex">首页</a>
 	<span>></span>
 	<a href="#">商品详情</a>
 </div>
@@ -82,17 +83,18 @@
 
 	<div class="goods_detail_list fr">
 		<h3>鲜美的<%=vegetable.getName()%></h3>
-		<p>草莓浆果柔软多汁，味美爽口，适合速冻保鲜贮藏。草莓速冻后，可以保持原有的色、香、味，既便于贮藏，又便于外销。</p>
+		<p><%=vegetable.getIntroduction()%></p>
 		<div class="prize_bar">
 			<span class="show_pirze">¥<a id="price"><%=vegetable.getPrice()%></a></span>
 			<span class="show_unit">单  位：500g</span>
+			<span class="show_unit">余  量：<%=vegetable.getSurplus()%></span>
 		</div>
 		<div class="goods_num clearfix">
 			<div class="num_name fl">数 量：</div>
 			<div class="num_add fl">
 				<input type="text" class="num_show fl" value="0" id="weight">
-				<a href="#" class="add fr" id="add">+</a>
-				<a href="#" class="minus fr" id="subtract">-</a>
+				<a href="#" class="add fr" id="add" onclick="add()">+</a>
+				<a href="#" class="minus fr" id="subtract" onclick="subtract()">-</a>
 			</div>
 		</div>
 		<div class="total" >总价：<em id="totalprice">0</em>元</div>
@@ -131,35 +133,11 @@
 		<div class="tab_content">
 			<dl>
 				<dt>商品详情：</dt>
-				<dd>草莓采摘园位于北京大兴区 庞各庄镇四各庄村 ，每年1月-6月面向北京以及周围城市提供新鲜草莓采摘和精品礼盒装草莓，草莓品种多样丰富，个大香甜。所有草莓均严格按照有机标准培育，不使用任何化肥和农药。草莓在采摘期间免洗可以直接食用。欢迎喜欢草莓的市民前来采摘，也欢迎各大单位选购精品有机草莓礼盒，有机草莓礼盒是亲朋馈赠、福利送礼的最佳选择。 </dd>
+				<dd><%=vegetable.getIntroduction()%></dd>
 			</dl>
 		</div>
 
 	</div>
 </div>
-
-<script type="text/javascript">
-    window.onload=function(){
-        var price = document.getElementById('price').innerHTML; //获取id是td的html文本内容
-        document.getElementById('add').onclick = function(){
-            var weight = document.getElementById('weight').value;
-            weight=parseFloat(weight);
-            document.getElementById('weight').value = weight + 1;
-            document.getElementById('totalprice').innerHTML = parseFloat(price) * parseFloat(weight+1);
-        }
-        document.getElementById('subtract').onclick = function(){
-            var weight = document.getElementById('weight').value;
-            weight=parseFloat(weight);
-            if(weight==0){
-                alert("数量不能够小于0")
-			}
-			else{
-                document.getElementById('weight').value = weight - 1;
-                document.getElementById('totalprice').innerHTML = parseFloat(price) * parseFloat(weight-1);
-			}
-        }
-
-    }
-</script>
 </body>
 </html>

@@ -1,7 +1,5 @@
 package com.example.vegetableorder.dao;
 
-
-import com.example.vegetableorder.domain.User;
 import com.example.vegetableorder.domain.Vegetables;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -35,9 +33,10 @@ public class OperateVegetable {
         return jdbcTemplate.queryForObject("select * from vegetables where name = ?",new BeanPropertyRowMapper<>(Vegetables.class),name);
     }
 
-    public boolean Insert(User stu){
+    public boolean Insert(Vegetables vegetables){
         try {
-            jdbcTemplate.update("insert into student VALUES (null,?,?)",stu.getName(),stu.getPassword());
+            jdbcTemplate.update("insert into vegetables VALUES (null,?,?,?,?,?,?)",vegetables.getName(),vegetables.getPrice(),vegetables.getDiscount(),
+                    vegetables.getImage(),vegetables.getSurplus(),vegetables.getIntroduction());
         } catch (DataAccessException e) {
             e.printStackTrace();
             return false;
@@ -45,8 +44,8 @@ public class OperateVegetable {
         return true;
     }
 
-    public void deleteStu(String id){
-        jdbcTemplate.update("delete from student where id=?",id);
+    public void delete(String name){
+        jdbcTemplate.update("delete from vegetables where name=?",name);
     }
 
 
