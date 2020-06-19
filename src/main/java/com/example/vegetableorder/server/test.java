@@ -21,6 +21,6 @@ public class test {
         test.select();
     }
     public  void select() {
-        System.out.println(operateData.getAllStu());
+        System.out.println(operateData.getAllVeg());
     }
 }

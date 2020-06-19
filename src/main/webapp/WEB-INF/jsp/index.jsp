@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.vegetableorder.domain.Vegetables" %>
+<%@ page import="com.example.vegetableorder.dao.OperateData" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 2020/6/18
@@ -52,7 +54,7 @@
     </div>
 </div>
 
-<div class="navbar_con">
+<%--<div class="navbar_con">
     <div class="navbar">
         <h1 class="fl">全部商品分类</h1>
         <ul class="navlist fl">
@@ -63,17 +65,17 @@
             <li><a href="">抽奖</a></li>
         </ul>
     </div>
-</div>
+</div>--%>
 
 <div class="center_con clearfix">
-    <ul class="subnav fl">
+   <%-- <ul class="subnav fl">
         <li><a href="#model01" class="fruit">新鲜水果</a></li>
         <li><a href="#model02" class="seafood">海鲜水产</a></li>
         <li><a href="#model03" class="meet">猪牛羊肉</a></li>
         <li><a href="#model04" class="egg">禽类蛋品</a></li>
         <li><a href="#model05" class="vegetables">新鲜蔬菜</a></li>
         <li><a href="#model06" class="ice">速冻食品</a></li>
-    </ul>
+    </ul>--%>
     <div class="slide fl">
         <ul class="slide_pics">
             <li><img src="/images/slide.jpg" alt="幻灯片"></li>
@@ -91,8 +93,9 @@
     </div>
 </div>
 
+
 <div class="list_model">
-    <div class="list_title clearfix">
+    <%--<div class="list_title clearfix">
         <h3 class="fl" id="model01">新鲜水果</h3>
         <div class="subtitle fl">
             <span>|</span>
@@ -101,34 +104,36 @@
             <a href="#">亚马逊牛油果</a>
         </div>
         <a href="#" class="goods_more fr" id="fruit_more">查看更多 ></a>
-    </div>
+    </div>--%>
 
+
+    <%--x下面要显示蔬菜，需要获取数据库的蔬菜信息--%>
+        <%
+            List<Vegetables> vegetablesList = new OperateData().getAllVeg();
+        %>
     <div class="goods_con clearfix">
         <div class="goods_banner fl"><img src="/images/banner01.jpg"></div>
         <ul class="goods_list fl">
-            <li>
+            <%
+                for (int i=0;i<vegetablesList.size();i++){
+                Vegetables vegetables = vegetablesList.get(i);
+            %>
+                <li>
+                    <h4><a href="#"><%=vegetables.getName()%></a></h4>
+                    <a href="/Controller/to_vegetable_info?vegetablename=<%=vegetables.getName()%>"><img src="<%=vegetables.getImage()%>"></a>
+                    <div class="prize"><%=vegetables.getPrice()%></div>
+                </li>
+            <%}
+            %>
+            <%--<li>
                 <h4><a href="#">草莓</a></h4>
                 <a href="#"><img src="/images/goods/goods003.jpg"></a>
                 <div class="prize">¥ 30.00</div>
-            </li>
-            <li>
-                <h4><a href="#">葡萄</a></h4>
-                <a href="#"><img src="/images/goods/goods002.jpg"></a>
-                <div class="prize">¥ 5.50</div>
-            </li>
-            <li>
-                <h4><a href="#">柠檬</a></h4>
-                <a href="#"><img src="/images/goods/goods001.jpg"></a>
-                <div class="prize">¥ 3.90</div>
-            </li>
-            <li>
-                <h4><a href="#">奇异果</a></h4>
-                <a href="#"><img src="/images/goods/goods012.jpg"></a>
-                <div class="prize">¥ 25.80</div>
-            </li>
+            </li>--%>
         </ul>
     </div>
 </div>
+<%--
 
 <div class="list_model">
     <div class="list_title clearfix">
@@ -323,8 +328,9 @@
         </ul>
     </div>
 </div>
+--%>
 
-<div class="footer">
+<%--<div class="footer">
     <div class="foot_link">
         <a href="#">关于我们</a>
         <span>|</span>
@@ -336,7 +342,7 @@
     </div>
     <p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
     <p>电话：010-****888    京ICP备*******8号</p>
-</div>
+</div>--%>
 <script type="text/javascript" src="/js/slideshow.js"></script>
 <script type="text/javascript">
     BCSlideshow('focuspic');

@@ -3,6 +3,7 @@ package com.example.vegetableorder.dao;
 
 import com.example.vegetableorder.domain.People;
 import com.example.vegetableorder.domain.People;
+import com.example.vegetableorder.domain.Vegetables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -28,8 +29,8 @@ public class OperateData {
     }*/
 
 
-    public List<People> getAllStu(){
-        return jdbcTemplate.query("select * from people",new BeanPropertyRowMapper<People>(People.class));
+    public List<Vegetables> getAllVeg(){
+        return jdbcTemplate.query("select * from vegetables",new BeanPropertyRowMapper<>(Vegetables.class));
     }
 
     public boolean Insert(People stu){
