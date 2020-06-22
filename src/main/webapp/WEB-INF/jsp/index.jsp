@@ -18,13 +18,15 @@
     <script type="text/javascript" src="/js/slide.js"></script>
 </head>
 <body>
+<%
+String username = (String) session.getAttribute("username");
+if (username==null)
+    username="";
+%>
 <div class="header_con">
     <div class="header">
-        <div class="welcome fl">欢迎来到天天生鲜!</div>
+        <div class="welcome fl">欢迎<b style="color: #5fb42a;font-size: 25px"><%=username%></b>来到天天生鲜!</div>
         <div class="fr">
-            <div class="login_info fl">
-                欢迎您：<em>张 山</em>
-            </div>
             <div class="login_btn fl">
                 <a href="/Dispatch/tologin">登录</a>
                 <span>|</span>

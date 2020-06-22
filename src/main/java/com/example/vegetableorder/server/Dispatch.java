@@ -23,7 +23,6 @@ public class Dispatch {
     public String to_vegetable_info(HttpSession session, HttpServletRequest request){
         String vegetablename = request.getParameter("vegetablename");
         session.setAttribute("vegetablename", vegetablename);
-        //System.out.println(vegetablename);
         return "vegetable_info";
     }
 }

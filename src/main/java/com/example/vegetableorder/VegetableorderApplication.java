@@ -15,12 +15,6 @@ public class VegetableorderApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(VegetableorderApplication.class, args);
-
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-        DataSource dataSource= applicationContext.getBean(DataSource.class);
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-
-        System.out.println(jdbcTemplate.query("select * from vegetables",new BeanPropertyRowMapper<>(Vegetables.class)));
     }
 
 }
