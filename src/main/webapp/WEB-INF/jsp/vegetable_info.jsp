@@ -1,6 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.vegetableorder.domain.Vegetables" %>
-<%@ page import="com.example.vegetableorder.dao.OperateVegetable" %><%--
+<%@ page import="com.example.vegetableorder.dao.OperateVegetable" %>
+<%@ page import="com.example.vegetableorder.domain.Recommendation" %>
+<%@ page import="com.example.vegetableorder.dao.OperateRecommend" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 2020/6/18
@@ -105,21 +107,35 @@
 	</div>
 </div>
 
+
+<%--下面是推荐的蔬菜信息，也需要从表中获取并显示出来--%>
 <div class="main_wrap clearfix">
 	<div class="l_wrap fl clearfix">
+		<%
+			List<Recommendation> recommendationList = new OperateRecommend().getAllVeg();
+		%>
 		<div class="new_goods">
 			<h3>新品推荐</h3>
 			<ul>
+				<%
+					for (int i=0;i<recommendationList.size();i++){
+						Recommendation recommendation = recommendationList.get(i);
+						/*如果目前显示的商品就在推荐商品里面，那么就不需要再次推荐*/
+						if(!vegetable.getName().equals(recommendation.getVegetablename())){
+				%>
 				<li>
-					<a href="#"><img src="/images/goods/goods001.jpg"></a>
-					<h4><a href="#">进口柠檬</a></h4>
-					<div class="prize">￥3.90</div>
+					<a href="/Dispatch/to_vegetable_info?vegetablename=<%=recommendation.getVegetablename()%>"><img src="<%=recommendation.getImage()%>"></a>
+					<h4><a href="/Dispatch/to_vegetable_info?vegetablename=<%=recommendation.getVegetablename()%>"><%=recommendation.getVegetablename()%></a></h4>
+					<div class="prize"><%=recommendation.getPrice()%></div>
 				</li>
-				<li>
+				<%}
+					}
+				%>
+				<%--<li>
 					<a href="#"><img src="/images/goods/goods002.jpg"></a>
 					<h4><a href="#">玫瑰香葡萄</a></h4>
 					<div class="prize">￥16.80</div>
-				</li>
+				</li>--%>
 			</ul>
 		</div>
 	</div>
