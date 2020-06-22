@@ -28,7 +28,7 @@
 %>
 <div class="header_con">
 	<div class="header">
-		<div class="welcome fl">欢迎<%=username%>来到天天生鲜!</div>
+		<div class="welcome fl">欢迎<b style="color: #5fb42a;font-size: 25px"><%=username%></b>来到天天生鲜!</div>
 		<div class="fr">
 			<div class="login_btn fl">
 				<a href="/Dispatch/tologin">登录</a>
