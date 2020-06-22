@@ -33,7 +33,7 @@
 			<div class="login_btn fl">
 				<a href="/Dispatch/tologin">登录</a>
 				<span>|</span>
-				<a href="register.html">注册</a>
+				<a href="/Controller/toregister">注册</a>
 			</div>
 			<div class="user_link fl">
 				<span>|</span>

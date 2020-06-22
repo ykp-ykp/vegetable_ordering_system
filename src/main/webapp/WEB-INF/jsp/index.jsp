@@ -30,7 +30,7 @@ if (username==null)
             <div class="login_btn fl">
                 <a href="/Dispatch/tologin">登录</a>
                 <span>|</span>
-                <a href="/WEB-INF/jsp/register.jsp">注册</a>
+                <a href="/Dispatch/toregister">注册</a>
             </div>
             <div class="user_link fl">
                 <span>|</span>

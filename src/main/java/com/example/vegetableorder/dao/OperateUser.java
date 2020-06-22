@@ -38,7 +38,8 @@ public class OperateUser {
 
     public boolean Insert(User user){
         try {
-            jdbcTemplate.update("insert into user VALUES (null,?,?)",user.getName(),user.getPassword());
+            jdbcTemplate.update("insert into user VALUES (null,?,?,?,?,0,?,?)",user.getName(),user.getPassword(),user.getPhone(),user.getAddress(),
+                    user.getTooltips(),user.getAnswer());
         } catch (DataAccessException e) {
             e.printStackTrace();
             return false;

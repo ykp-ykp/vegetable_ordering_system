@@ -19,6 +19,11 @@ public class Dispatch {
         return "index";
     }
 
+    @RequestMapping("/toregister")
+    public String register(){
+        return "register";
+    }
+
     @RequestMapping("/to_vegetable_info")
     public String to_vegetable_info(HttpSession session, HttpServletRequest request){
         String vegetablename = request.getParameter("vegetablename");

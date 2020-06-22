@@ -25,10 +25,10 @@
         <div class="login_form fr">
             <div class="login_title clearfix">
                 <h1>用户登录</h1>
-                <a href="#">立即注册</a>
+                <a href="/Dispatch/toregister">立即注册</a>
             </div>
             <div class="form_input">
-                <form action="/Login/tologin" method="post">
+                <form action="/Controller/tologin" method="post">
                     <input type="text" name="username" class="name_input" placeholder="请输入用户名">
                     <div class="user_error">输入错误</div>
                     <input type="password" name="password" class="pass_input" placeholder="请输入密码">
