@@ -58,7 +58,7 @@ public class Controller {
         User user = new User(username, password, phone, address, tooltips, answer);
         boolean b = operateUser.Insert(user);  //注册用户
         if (b == true){
-            //注册成功之后
+            return "login";
         }
         else {
             //注册失败之后

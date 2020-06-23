@@ -28,7 +28,7 @@
             <h1>用户注册</h1>
         </div>
         <div class="reg_form clearfix">
-            <form action="/Controller/toregister" method="post">
+            <form action="/Controller/toregister" method="post" onsubmit="return checkall()">
                 <ul>
                     <li>
                         <label>用户名:</label>
@@ -71,24 +71,22 @@
                         <span class="error_tip2">提示信息</span>
                     </li>
                     <li class="reg_sub">
-                        <input type="submit"  value="注 册" name="" id="sumbit">
+                        <input type="submit"  value="注 册" name="submit" id="submit">
                     </li>
                 </ul>
             </form>
         </div>
-
     </div>
 
 </div>
 <script>
+    var error_name = false;
+    var error_password = false;
+    var error_check_password = false;
+    var error_phone = false;
+    var error_check = false;
+
     $(function(){
-
-        var error_name = false;
-        var error_password = false;
-        var error_check_password = false;
-        var error_phone = false;
-        var error_check = false;
-
 
         $('#user_name').blur(function() {
             check_user_name();
@@ -171,6 +169,7 @@
         }
 
         function check_phone(){
+            console.log("在检查电话号码")
             var re = /^1[3456789]\d{9}$/;
             if(re.test($('#phone').val()))
             {
@@ -186,25 +185,20 @@
 
         }
 
-
-        $('#submit').submit(function() {
-            check_user_name();
-            check_pwd();
-            check_cpwd();
-            check_phone();
-
-            if(error_name == false && error_password == false && error_check_password == false && error_phone == false && error_check == false)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        });
-
     })
+
+    function checkall(){
+        if(error_name == false && error_password == false && error_check_password == false && error_phone == false && error_check == false)
+        {
+            alert("注册成功");
+            return true;
+        }
+        else
+        {
+            console.log("提交失败")
+            return false;
+        }
+    }
 </script>
 </body>
 </html>
