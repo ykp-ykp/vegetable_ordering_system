@@ -18,6 +18,7 @@
     <script type="text/javascript" src="/js/slide.js"></script>
 </head>
 <body>
+
 <%
 String username = (String) session.getAttribute("username");
 if (username==null)
@@ -27,11 +28,23 @@ if (username==null)
     <div class="header">
         <div class="welcome fl">欢迎<b style="color: #5fb42a;font-size: 25px"><%=username%></b>来到天天生鲜!</div>
         <div class="fr">
+            <%
+                if (username.equals("")){%>
+                   <%-- 如果用户未登录，需要显示登录和注册链接--%>
+                <div class="login_btn fl">
+                     <a href="/Dispatch/tologin">登录</a>
+                    <span>|</span>
+                    <a href="/Dispatch/toregister">注册</a>
+                </div>
+            <%}
+                else{%>
+                    <%--如果用户已登录，需要显示退出链接--%>
             <div class="login_btn fl">
-                <a href="/Dispatch/tologin">登录</a>
-                <span>|</span>
-                <a href="/Dispatch/toregister">注册</a>
+                <a href="/Dispatch/quit">退出</a>
             </div>
+            <%}
+            %>
+
             <div class="user_link fl">
                 <span>|</span>
                 <a href="user_center_info.jsp">用户中心</a>

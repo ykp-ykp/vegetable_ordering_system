@@ -14,6 +14,14 @@ public class Dispatch {
         return "login";
     }
 
+    @RequestMapping("/quit")
+    public String quit(HttpSession session){
+        //退出时，只需要把session存储的用户名删掉，让在跳转到其他界面的时候无法获取用户即可
+        session.removeAttribute("username");
+        session.setAttribute("username", null);
+        return "redirect:/Dispatch/tologin";
+    }
+
     @RequestMapping("/toindex")
     public String index(){
         return "index";
