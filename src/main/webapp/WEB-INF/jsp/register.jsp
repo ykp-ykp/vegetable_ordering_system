@@ -67,7 +67,7 @@
                     </li>
                     <li class="agreement">
                         <input type="checkbox" name="allow" id="allow" checked="checked">
-                        <label>同意”天天生鲜用户使用协议“</label>
+                        <label>同意”用户使用协议“</label>
                         <span class="error_tip2">提示信息</span>
                     </li>
                     <li class="reg_sub">
@@ -123,7 +123,7 @@
             var len = $('#user_name').val().length;
             if(len<1||len>20)
             {
-                $('#user_name').next().html('请输入非0个字符的用户名')
+                $('#user_name').next().html('用户名不能为空')
                 $('#user_name').next().show();
                 error_name = true;
             }

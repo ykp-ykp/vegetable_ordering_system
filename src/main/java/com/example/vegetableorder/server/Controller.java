@@ -42,8 +42,9 @@ public class Controller {
                 return "index";
         }
         else {
-            //登录失败，这里需要一个提示
-            return "login_faild";
+            request.setAttribute("error","登陆失败" );
+            request.setAttribute("pagename","tologin" );
+            return "ErroePage";
         }
     }
 
