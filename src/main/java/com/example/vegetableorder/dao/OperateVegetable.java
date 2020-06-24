@@ -16,13 +16,6 @@ public class OperateVegetable {
 
     ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
     JdbcTemplate jdbcTemplate = new JdbcTemplate(applicationContext.getBean(DataSource.class));
-    /*JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    public void setJdbc( DataSource dataSource){
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-        this.jdbcTemplate = new JdbcTemplate(applicationContext.getBean(dataSource.getClass()));
-    }*/
 
 
     public List<Vegetables> getAllVeg(){
@@ -30,7 +23,8 @@ public class OperateVegetable {
     }
 
     public Vegetables getOneVeg(String name){
-        return jdbcTemplate.queryForObject("select * from vegetables where name = ?",new BeanPropertyRowMapper<>(Vegetables.class),name);
+        String sql="select * from vegetables where name = '"+name+"'";
+        return jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(Vegetables.class));
     }
 
     public boolean Insert(Vegetables vegetables){

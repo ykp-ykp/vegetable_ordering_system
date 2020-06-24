@@ -2,7 +2,9 @@
 <%@ page import="com.example.vegetableorder.domain.Vegetables" %>
 <%@ page import="com.example.vegetableorder.dao.OperateVegetable" %>
 <%@ page import="com.example.vegetableorder.domain.Recommendation" %>
-<%@ page import="com.example.vegetableorder.dao.OperateRecommend" %><%--
+<%@ page import="com.example.vegetableorder.dao.OperateRecommend" %>
+<%@ page import="com.example.vegetableorder.domain.User" %>
+<%@ page import="com.example.vegetableorder.dao.OperateUser" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 2020/6/18
@@ -13,12 +15,11 @@
 <html>
 <head>
 <title>天天生鲜-商品详情</title>
+<script type="text/javascript" src="/js/add_subtract.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/reset.css">
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 <script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="/js/slide.js"></script>
-<script type="text/javascript" src="/js/add_subtract.js"></script>
 </head>
 <body>
 <%
@@ -48,11 +49,11 @@
 			%>
 			<div class="user_link fl">
 				<span>|</span>
-				<a href="user_center_info.html">用户中心</a>
+				<a href="/Dispatch/to_user_center_info">用户中心</a>
 				<span>|</span>
-				<a href="cart.html">我的购物车</a>
+				<a href="/Dispatch/to_cart">我的购物车</a>
 				<span>|</span>
-				<a href="user_center_order.html">我的订单</a>
+				<a href="/Dispatch/to_user_center_order">我的订单</a>
 			</div>
 		</div>
 	</div>
@@ -92,7 +93,8 @@
 		String vegetablename = (String)session.getAttribute("vegetablename");
 		//从数据库获取该对象
 		Vegetables vegetable = new OperateVegetable().getOneVeg(vegetablename);
-		System.out.println(vegetable);
+		//把要订购的蔬菜对象传到server层
+		//request.setAttribute("vegetablename",vegetablename );
 	%>
 	<div class="goods_detail_pic fl"><img src="<%=vegetable.getImage()%>"></div>
 
@@ -103,19 +105,25 @@
 			<span class="show_pirze">¥<a id="price"><%=vegetable.getPrice()%></a></span>
 			<span class="show_unit">单  位：500g</span>
 			<span class="show_unit">余  量：<%=vegetable.getSurplus()%></span>
+			<input type="hidden" id="surplus" value="<%=vegetable.getSurplus()%>">
 		</div>
 		<div class="goods_num clearfix">
 			<div class="num_name fl">数 量：</div>
 			<div class="num_add fl">
-				<input type="text" class="num_show fl" value="0" id="weight">
+				<%--下面那个value通过request怎么或去不到啊--%>
+				<input type="text" class="num_show fl" value="0" id="weight" name="weight">
 				<a href="#" class="add fr" id="add" onclick="add()">+</a>
 				<a href="#" class="minus fr" id="subtract" onclick="subtract()">-</a>
 			</div>
 		</div>
 		<div class="total" >总价：<em id="totalprice">0</em>元</div>
+		<input type="hidden" id="Htotalprice" name="Htotalprice" value="0">
+
 		<div class="operate_btn">
-			<a href="javascript:;" class="buy_btn">立即购买</a>
-			<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>
+			<a href="" class="buy_btn">立即购买</a>
+			<%--<a href="" class="add_cart" id="add_cart">加入购物车</a>--%>
+			<%--<span class="error_tip">提示信息</span>--%>
+			<a href="/Purchase/add_cart" type="submit" class="add_cart" id="add_cart" onclick="check_weight()">加入购物车</a>
 		</div>
 	</div>
 </div>
@@ -144,11 +152,6 @@
 				<%}
 					}
 				%>
-				<%--<li>
-					<a href="#"><img src="/images/goods/goods002.jpg"></a>
-					<h4><a href="#">玫瑰香葡萄</a></h4>
-					<div class="prize">￥16.80</div>
-				</li>--%>
 			</ul>
 		</div>
 	</div>

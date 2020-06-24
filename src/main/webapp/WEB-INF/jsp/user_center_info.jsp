@@ -19,30 +19,23 @@
             <div class="user_link fl">
                 <a href="/Dispatch/quit">退出</a>
                 <span>|</span>
-                <a href="/cart.html">我的购物车</a>
-                <span>|</span>
-                <a href="/user_center_order.html">我的订单</a>
+                <a href="/Dispatch/toindex">返回首页</a>
             </div>
         </div>
     </div>
 </div>
 
 <div class="search_bar clearfix">
-    <a href="/index.html" class="logo fl"><img src="/images/logo.png"></a>
+    <a href="/Dispatch/toindex" class="logo fl"><img src="/images/logo.png"></a>
     <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;用户中心</div>
-    <div class="search_con fr">
-        <input type="text" class="input_text fl" name="" placeholder="搜索商品">
-        <input type="button" class="input_btn fr" name="" value="搜索">
-    </div>
 </div>
 
 <div class="main_con clearfix">
     <div class="left_menu_con clearfix">
         <h3>用户中心</h3>
         <ul>
-            <li><a href="/user_center_info.html" class="active">· 个人信息</a></li>
-            <li><a href="/user_center_order.html">· 全部订单</a></li>
-            <li><a href="/user_center_site.html">· 收货地址</a></li>
+            <li><a href="/Dispatch/to_user_center_info" class="active">· 个人信息</a></li>
+            <li><a href="/Dispatch/to_user_center_order">· 全部订单</a></li>
         </ul>
     </div>
     <div class="right_content clearfix">
