@@ -34,7 +34,7 @@
     </div>
 </div>
 <div class="search_bar clearfix">
-    <a href="/index.html" class="logo fl"><img src="/images/logo.png"></a>
+    <a href="/Dispatch/toindex" class="logo fl"><img src="/images/logo.png"></a>
     <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;购物车</div>
 </div>
 <%//获取当前用户的所有的未付款的订单
@@ -56,16 +56,17 @@
 
        <%
            for (int i=0;i<ordersList.size();i++){
-               Orders order = ordersList.get(i);%>
+               Orders order = ordersList.get(i);
+               Vegetables vegetable = new OperateVegetable().getOneVeg(order.getVegetablename());
+       %>
        <form action="/Purchase/DeleteOrders">
        <tr>
            <td><input type="checkbox" class="checkCss" value="<%=order.getTime()%>"/></td>
-           <td><p><img src="/images/goods/goods012.jpg" /></p><p><%=order.getVegetablename()%></p></td>
+           <td><p><img src="<%=vegetable.getImage()%>" /></p><p><%=order.getVegetablename()%></p></td>
            <td><%=order.getPrice()%></td>
            <td class="count"><input class="reduceCss" id="jia1" value="-" type="button"/>
                <input type="text" class="inputCountCss" id="inputCountCss1" name="orderweight" value="<%=order.getWeight()%>" size="8"/>
                <input class="addCss" id="jia2" value="+" type="button"/></td>
-                <%Vegetables vegetable = new OperateVegetable().getOneVeg(order.getVegetablename());%>
                 <input type="hidden" name="surplus" value="<%=vegetable.getSurplus()%>"/>
            <td id="stotal3"><%=order.getTotalprice()%></td>
            <input type="hidden" name="price" value="<%=order.getPrice()%>"/>
@@ -84,9 +85,11 @@
         <%--通过script里面获取checkbox是否被选中，如果某一订单被选中，则把这个订单的时间,单位数量，总价加在下面的value值后面。
         之后再在server中获取到这些订单时间在修改这些订单的状态为已付款--%>
         <form action="/Purchase/Pay" method="post" onsubmit="return jiesuan()">
-            <input type="text" name="everyordertime" id="everyordertime" value="" />
-            <input type="text" name="everyorderweight" id="everyorderweight" value="" />
-            <input type="text" name="everyordertotalprice" id="everyordertotalprice" value="" />
+            <input type="hidden" name="everyordertime" id="everyordertime" value="" />
+            <input type="hidden" name="everyorderweight" id="everyorderweight" value="" />
+            <input type="hidden" name="everyordertotalprice" id="everyordertotalprice" value="" />
+            <%--需要结算的蔬菜的名字，在server中来修改该蔬菜的余量--%>
+            <input type="hidden" name="everyvegetablename" id="everyvegetablename" value="" />
             <input type="submit" name="btnOrder" id="btnOrder" value="立即结算" />
         </form>
     </div>

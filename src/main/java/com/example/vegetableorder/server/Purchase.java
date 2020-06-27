@@ -19,6 +19,8 @@ import java.text.SimpleDateFormat;
 @RequestMapping("/Purchase")
 public class Purchase {
 
+    OperateVegetable operateVegetable = new OperateVegetable();
+
     @RequestMapping("/add_cart")
     public String add_cart(HttpSession session, HttpServletRequest request, HttpServletResponse response){
         String username = (String) session.getAttribute("username");
@@ -44,13 +46,16 @@ public class Purchase {
             try {
                 Orders orders = new Orders(username,vegetablename,weight,price,totalprice,ismember,state,time);
                 new OperateOrders().insert(orders);
+               /* 更新蔬菜余量（不更新了，只有在结账的时候才会更新）
+                double surplus = vegetables.getSurplus();
+                surplus-=weight;
+                operateVegetable.altersurplus(vegetablename,surplus );*/
                 //session.setAttribute("tooltips","加入购物车成功！" );
             } catch (Exception e) {
                 session.setAttribute("tooltips","加入购物车失败！" );
                 e.printStackTrace();
             }
 
-            //System.out.println(username+"--"+vegetablename+"--"+weight+"--"+price+"--"+totalprice+"--"+ismember+"--"+state+"--"+time);
             return "index";
         }
 
@@ -62,6 +67,14 @@ public class Purchase {
         String vegetablename = request.getParameter("vegetablename");
         String time = request.getParameter("time");
         new OperateOrders().delete(username,vegetablename ,time );
+
+        //删除之后需要把余量加进去（不需要了）
+        //我改成了只有结账才需要加减，加入购车不加减
+       /* double surplus = new OperateVegetable().getOneVeg(vegetablename).getSurplus();
+        double weight = Double.parseDouble(request.getParameter("orderweight"));
+        surplus+=weight;
+        new OperateVegetable().altersurplus(vegetablename,surplus );*/
+
         return "cart2";
     }
 
@@ -71,10 +84,12 @@ public class Purchase {
         String everyordertime = request.getParameter("everyordertime");
         String everyorderweight = request.getParameter("everyorderweight");
         String everyordertotalprice = request.getParameter("everyordertotalprice");
+        String everyvegetablename = request.getParameter("everyvegetablename");
 
         String[] everyordertimeArray = everyordertime.split(",");
         String[] everyorderweightArray = everyorderweight.split(",");
         String[] everyordertotalpriceArray = everyordertotalprice.split(",");
+        String[] everyvegetablenameArray = everyvegetablename.split(",");
         String username = (String)session.getAttribute("username");
 
         OperateOrders operateOrders = new OperateOrders();
@@ -84,6 +99,9 @@ public class Purchase {
                 String weight = everyorderweightArray[i];
                 String totalprice = everyordertotalpriceArray[i];
                 operateOrders.alter(time,weight,totalprice,username);
+                //结账之后把购买的蔬菜从余量中减去
+                double surplus =operateVegetable.getOneVeg(everyvegetablenameArray[i]).getSurplus();
+                operateVegetable.altersurplus(everyvegetablenameArray[i], surplus-Double.parseDouble(weight));
             }
         }
 

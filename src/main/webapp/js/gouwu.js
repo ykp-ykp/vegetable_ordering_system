@@ -6,6 +6,8 @@ window.onload = function demo() {
 	oCheck = document.getElementsByClassName("checkCss");
 	//找到所有订单数量
 	allSelectOrder = document.getElementsByName("orderweight");
+	//获取所有订单中的蔬菜名
+    everyvegetablename = document.getElementsByName("vegetablename");
 	//找到每一个订单的蔬菜的单价
     price = document.getElementsByName("price");
     //找到每一种蔬菜的余量
@@ -65,6 +67,16 @@ window.onload = function demo() {
         }
         document.getElementById("everyorderweight").value = orderweight;
         document.getElementById("everyordertotalprice").value = everyordertotalprice;
+        geteveryvegetablename();
+    }
+
+    function geteveryvegetablename() {
+        var length = everyvegetablename.length;
+        var vegetablename = new Array(length);
+        for (var i = 0; i < length; i++) {
+            vegetablename[i] = everyvegetablename[i].value;
+        }
+        document.getElementById("everyvegetablename").value = vegetablename;
     }
 
     //单击全选按钮函数
@@ -77,12 +89,8 @@ window.onload = function demo() {
 					totalCount += parseFloat(oInputCount[i].value);
 					totalMoney += parseFloat(otr[i + 1].cells[4].innerText);
 				}
-                /*//获取当前复选框所在订单的订单时间，并赋给id为selectvegetable的元素的value值
-                var ordertime = oCheck[i].value;
-                document.getElementById("selectvegetable").value += (ordertime+"-");*/
             }
 		} else {
-            document.getElementById("selectvegetable").value ="";
 			for(i = 0; i < oCheck.length; i++) {
 				oCheck[i].checked = false;
 				flag = 0;
@@ -175,7 +183,7 @@ window.onload = function demo() {
 	}
 	function jiesuan(){
 		if(flag!=0){
-			window.location.href="success.html";
+			alert("结算成功！")
 			return true;
 		}
 		else{

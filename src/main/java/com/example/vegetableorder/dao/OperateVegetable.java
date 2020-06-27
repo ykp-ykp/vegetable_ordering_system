@@ -41,5 +41,12 @@ public class OperateVegetable {
         jdbcTemplate.update("delete from vegetables where name=?",name);
     }
 
+    public void alterprice(String name,double price){
+        jdbcTemplate.update("update vegetables set price = ? where name=?",price,name);
+    }
+
+    public void altersurplus(String name,double surplus){
+        jdbcTemplate.update("update vegetables set surplus = ? where name=?",surplus,name);
+    }
 
 }
