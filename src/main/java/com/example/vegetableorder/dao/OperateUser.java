@@ -33,8 +33,7 @@ public class OperateUser {
     }
 
     public User getOneUser(String name){
-        String sql="select * from user where name = '"+name+"'";
-        return jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(User.class));
+        return jdbcTemplate.queryForObject("select * from user where name = ?",new BeanPropertyRowMapper<>(User.class),name);
     }
 
     public boolean Insert(User user){

@@ -15,11 +15,11 @@
 <html>
 <head>
 <title>天天生鲜-商品详情</title>
+<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/js/add_subtract.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/reset.css">
 <link rel="stylesheet" type="text/css" href="/css/main.css">
-<script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
 </head>
 <body>
 <%
@@ -117,14 +117,24 @@
 			</div>
 		</div>
 		<div class="total" >总价：<em id="totalprice">0</em>元</div>
-		<input type="hidden" id="Htotalprice" name="Htotalprice" value="0">
+		<table class="operate_btn">
+            <tr>
+                <td>
+                    <form action="" class="">
+                         <a href="" class="buy_btn">立即购买</a>
+                    </form>
+                </td>
+                <td>
+                    <form action="/Purchase/add_cart" onclick="return check_weight()" method="post">
+                        <input type="hidden" name="form_weight" id="form_weight" value="0">
+                        <input type="hidden" name="form_totalprice" id="form_totalprice" value="0">
+                        <button class="add_cart" type="submit" id="add_cart">加入购物车</button>
+                        <%--<a href="/Purchase/add_cart" type="" class="add_cart" id="add_cart" onclick="check_weight()">加入购物车</a>--%>
+                    </form>
+                </td>
+            </tr>
 
-		<div class="operate_btn">
-			<a href="" class="buy_btn">立即购买</a>
-			<%--<a href="" class="add_cart" id="add_cart">加入购物车</a>--%>
-			<%--<span class="error_tip">提示信息</span>--%>
-			<a href="/Purchase/add_cart" type="submit" class="add_cart" id="add_cart" onclick="check_weight()">加入购物车</a>
-		</div>
+		</table>
 	</div>
 </div>
 

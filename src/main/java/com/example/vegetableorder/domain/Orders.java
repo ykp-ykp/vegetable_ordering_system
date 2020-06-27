@@ -11,6 +11,19 @@ public class Orders {
     private int state;
     private String time;
 
+    public Orders(){}
+
+    public Orders(String username, String vegetablename, double weight, double price, double totalprice, int ismember, int state, String time) {
+        this.username = username;
+        this.vegetablename = vegetablename;
+        this.weight = weight;
+        this.price = price;
+        this.totalprice = totalprice;
+        this.ismember = ismember;
+        this.state = state;
+        this.time = time;
+    }
+
     public int getOrderid() {
         return orderid;
     }

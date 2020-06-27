@@ -23,6 +23,18 @@
 String username = (String) session.getAttribute("username");
 if (username==null)
     username="";
+
+/*一下几行是判断返回到index页面是否有要显示弹框的信息*/
+String tooltips = (String) session.getAttribute("tooltips");
+if (tooltips!=null&&(!tooltips.equals(""))){%>
+<script>
+    alert("<%=tooltips%>");
+</script>
+<%
+    /*输出一次就要及时删除，以免之后重复输出*/
+session.setAttribute("tooltips","" );
+session.removeAttribute("tooltips");
+}
 %>
 <div class="header_con">
     <div class="header">
@@ -113,21 +125,5 @@ if (username==null)
         </ul>
     </div>
 </div>
-<script type="text/javascript" src="/js/slideshow.js"></script>
-<script type="text/javascript">
-
-    BCSlideshow('focuspic');
-    var oFruit = document.getElementById('fruit_more');
-    var oShownum = document.getElementById('show_count');
-    var hasorder = localStorage.getItem('order_finish');
-    if(hasorder)
-    {
-        oShownum.innerHTML = '2';
-    }
-
-    oFruit.onclick = function(){
-        window.location.href = 'list.jsp';
-    }
-</script>
 </body>
 </html>

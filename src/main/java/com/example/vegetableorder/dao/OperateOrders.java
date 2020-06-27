@@ -21,6 +21,10 @@ public class OperateOrders {
         return jdbcTemplate.query("select * from orders",new BeanPropertyRowMapper<>(Orders.class));
     }
 
+    public List<Orders> getUnpaidOrders(String username){
+        return jdbcTemplate.query("select * from orders where username = ? and state = '0'",new BeanPropertyRowMapper<>(Orders.class),username);
+    }
+
     public boolean insert(Orders orders){
         try {
             jdbcTemplate.update("insert into orders VALUES (null,?,?,?,?,?,?,?,?)",orders.getUsername(),orders.getVegetablename(),
@@ -34,6 +38,10 @@ public class OperateOrders {
 
     public void delete(String username,String vegetablename,String time){
         jdbcTemplate.update("delete from orders where username=? and vegetablename=? and time=?",username,vegetablename,time);
+    }
+
+    public void alter(String time,String weight,String totalprice,String username){
+        jdbcTemplate.update("update orders set weight = ? ,totalprice = ?,state = '1' where time = ? and username = ?", weight,totalprice,time,username);
     }
 
 }

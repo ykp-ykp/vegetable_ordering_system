@@ -1,4 +1,6 @@
-<%--
+<%@ page import="com.example.vegetableorder.domain.Orders" %>
+<%@ page import="com.example.vegetableorder.dao.OperateOrders" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 2020/6/24
@@ -17,21 +19,11 @@
     <div class="header">
         <div class="welcome fl">欢迎来到天天生鲜!</div>
         <div class="fr">
-            <div class="login_info fl">
-                欢迎您：<em>张 山</em>
-            </div>
-            <div class="login_btn fl">
-                <a href="/login.html">登录</a>
-                <span>|</span>
-                <a href="/register.html">注册</a>
-            </div>
             <div class="user_link fl">
                 <span>|</span>
-                <a href="/user_center_info.html">用户中心</a>
+                <a href="/Dispatch/quit">退出</a>
                 <span>|</span>
-                <a href="/cart.html">我的购物车</a>
-                <span>|</span>
-                <a href="/user_center_order.html">我的订单</a>
+                <a href="/Dispatch/toindex">返回首页</a>
             </div>
         </div>
     </div>
@@ -40,54 +32,42 @@
 <div class="search_bar clearfix">
     <a href="/index.html" class="logo fl"><img src="/images/logo.png"></a>
     <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;购物车</div>
-    <div class="search_con fr">
-        <input type="text" class="input_text fl" name="" placeholder="搜索商品">
-        <input type="button" class="input_btn fr" name="" value="搜索">
-    </div>
 </div>
-
-<div class="total_count">全部商品<em>2</em>件</div>
+<%//获取当前用户的所有的未付款的订单
+String username = (String)session.getAttribute("username");
+List<Orders> ordersList = new OperateOrders().getUnpaidOrders(username);
+%>
+<div class="total_count">全部商品<em><%=ordersList.size()%></em>件</div>
 <ul class="cart_list_th clearfix">
     <li class="col01">商品名称</li>
     <li class="col02">商品单位</li>
     <li class="col03">商品价格</li>
     <li class="col04">数量</li>
-    <li class="col05">小计</li>
+    <li class="col05">总计</li>
     <li class="col06">操作</li>
 </ul>
-<ul class="cart_list_td clearfix">
-    <li class="col01"><input type="checkbox" name="" checked></li>
-    <li class="col02"><img src="/images/goods/goods012.jpg"></li>
-    <li class="col03">奇异果<br><em>25.80元/500g</em></li>
-    <li class="col04">500g</li>
-    <li class="col05">25.80元</li>
-    <li class="col06">
-        <div class="num_add">
-            <a href="/javascript:;" class="add fl">+</a>
-            <input type="text" class="num_show fl" value="1">
-            <a href="/javascript:;" class="minus fl">-</a>
-        </div>
-    </li>
-    <li class="col07">25.80元</li>
-    <li class="col08"><a href="/javascript:;">删除</a></li>
-</ul>
+<%
+    for (int i=0;i<ordersList.size();i++){
+        Orders order = ordersList.get(i);%>
 
-<ul class="cart_list_td clearfix">
-    <li class="col01"><input type="checkbox" name="" checked></li>
-    <li class="col02"><img src="/images/goods/goods003.jpg"></li>
-    <li class="col03">大兴大棚草莓<br><em>16.80元/500g</em></li>
-    <li class="col04">500g</li>
-    <li class="col05">16.80元</li>
-    <li class="col06">
-        <div class="num_add">
-            <a href="/javascript:;" class="add fl">+</a>
-            <input type="text" class="num_show fl" value="1">
-            <a href="/javascript:;" class="minus fl">-</a>
-        </div>
-    </li>
-    <li class="col07">16.80元</li>
-    <li class="col08"><a href="/javascript:;">删除</a></li>
-</ul>
+    <ul class="cart_list_td clearfix" name="<%=i%>" id="<%=i%>">
+        <li class="col01"><input type="checkbox" name="" checked="checked"></li>
+        <li class="col02"><img src="/images/goods/goods012.jpg"></li>
+        <li class="col03"><%=order.getVegetablename()%></li>
+        <li class="col04">500g</li>
+        <li class="col05"><%=order.getPrice()%>元/500g</li>
+        <li class="col06">
+            <div class="num_add">
+                <a href="/javascript:;" class="add fl">+</a>
+                <input type="text" class="num_show fl" value="<%=order.getWeight()%>">
+                <a href="/javascript:;" class="minus fl">-</a>
+            </div>
+        </li>
+        <li class="col07"><%=order.getTotalprice()%></li>
+        <li class="col08"><a href="/javascript:;">删除</a></li>
+    </ul>
+<%}
+%>
 
 
 <ul class="settlements">

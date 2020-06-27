@@ -74,7 +74,7 @@ public class Dispatch {
             return "ErroePage";
         }
         else
-        return "cart";
+        return "cart2";
     }
 
 }

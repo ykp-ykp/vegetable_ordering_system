@@ -23,8 +23,7 @@ public class OperateVegetable {
     }
 
     public Vegetables getOneVeg(String name){
-        String sql="select * from vegetables where name = '"+name+"'";
-        return jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(Vegetables.class));
+        return jdbcTemplate.queryForObject("select * from vegetables where name = ?",new BeanPropertyRowMapper<>(Vegetables.class),name);
     }
 
     public boolean Insert(Vegetables vegetables){
