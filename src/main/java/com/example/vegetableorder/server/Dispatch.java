@@ -17,8 +17,8 @@ public class Dispatch {
     @RequestMapping("/quit")
     public String quit(HttpSession session){
         //退出时，只需要把session存储的用户名删掉，让在跳转到其他界面的时候无法获取用户即可
-        session.removeAttribute("username");
         session.setAttribute("username", null);
+        session.removeAttribute("username");
         return "redirect:/Dispatch/tologin";
     }
 
@@ -54,7 +54,6 @@ public class Dispatch {
 
     @RequestMapping("/to_user_center_order")
     public String to_user_center_order(HttpSession session, HttpServletRequest request, HttpServletResponse response){
-        //这里需要设置一个拦截器，如果用户已登陆，则可以跳转到用户中心，否则不能
         String username = (String) session.getAttribute("username");
         if(username==null|| username.equals("")){
             request.setAttribute("error","你还未登录，请去登录！" );
@@ -65,6 +64,19 @@ public class Dispatch {
             return "user_center_order";
     }
 
+    @RequestMapping("/to_alter_user_info")
+    public String to_alter_user_info(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+        String username = (String) session.getAttribute("username");
+        if(username==null|| username.equals("")){
+            request.setAttribute("error","你还未登录，请去登录！" );
+            request.setAttribute("pagename","tologin" );
+            return "ErroePage";
+        }
+        else
+            return "alter_user_info";
+    }
+
+
 @RequestMapping("/to_cart")
     public String to_cart(HttpSession session, HttpServletRequest request){
         String username = (String) session.getAttribute("username");
@@ -74,7 +86,7 @@ public class Dispatch {
             return "ErroePage";
         }
         else
-        return "cart2";
+            return "cart2";
     }
 
 }

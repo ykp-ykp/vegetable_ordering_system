@@ -21,6 +21,10 @@ public class OperateOrders {
         return jdbcTemplate.query("select * from orders",new BeanPropertyRowMapper<>(Orders.class));
     }
 
+    public List<Orders> getMyOrders(String username){
+        return jdbcTemplate.query("select * from orders where username = ?",new BeanPropertyRowMapper<>(Orders.class),username);
+    }
+
     public List<Orders> getUnpaidOrders(String username){
         return jdbcTemplate.query("select * from orders where username = ? and state = '0'",new BeanPropertyRowMapper<>(Orders.class),username);
     }

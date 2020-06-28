@@ -1,6 +1,5 @@
 package com.example.vegetableorder.server;
 
-import ch.qos.logback.core.joran.conditional.ElseAction;
 import com.example.vegetableorder.dao.OperateAdmin;
 import com.example.vegetableorder.dao.OperateUser;
 import com.example.vegetableorder.domain.User;
@@ -66,4 +65,5 @@ public class Controller {
         }
         return "login";
     }
+
 }

@@ -50,4 +50,9 @@ public class OperateUser {
     public void delete(String name){
         jdbcTemplate.update("delete from user where name=?",name);
     }
+
+    public void alter(String username,String password,String phone,String address,String tooltips,String answer){
+        jdbcTemplate.update("update user set password = ?,phone = ?,address = ?,tooltips = ?,answer = ? where name=?",password,
+                phone,address,tooltips,answer,username);
+    }
 }

@@ -18,17 +18,21 @@
     <link href="/css/gouwu.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/js/gouwu.js" ></script>
 </head>
-
 <body>
+<%//获取当前用户的所有的未付款的订单
+    String username = (String)session.getAttribute("username");
+    List<Orders> ordersList = new OperateOrders().getUnpaidOrders(username);
+%>
 <div class="header_con">
     <div class="header">
-        <div class="welcome fl">欢迎来到天天生鲜!</div>
+        <div class="welcome fl">欢迎<b style="color: #5fb42a;font-size: 25px"><%=username%></b>来到天天生鲜!</div>
         <div class="fr">
             <div class="user_link fl">
-                <span>|</span>
-                <a href="/Dispatch/quit">退出</a>
+                <a href="/Dispatch/to_user_center_info">用户中心</a>
                 <span>|</span>
                 <a href="/Dispatch/toindex">返回首页</a>
+                <span>|</span>
+                <a href="/Dispatch/quit">退出</a>
             </div>
         </div>
     </div>
@@ -37,10 +41,6 @@
     <a href="/Dispatch/toindex" class="logo fl"><img src="/images/logo.png"></a>
     <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;购物车</div>
 </div>
-<%//获取当前用户的所有的未付款的订单
-    String username = (String)session.getAttribute("username");
-    List<Orders> ordersList = new OperateOrders().getUnpaidOrders(username);
-%>
 
 <div id="page">
 <div id="listdiv">
@@ -65,8 +65,8 @@
            <td><p><img src="<%=vegetable.getImage()%>" /></p><p><%=order.getVegetablename()%></p></td>
            <td><%=order.getPrice()%></td>
            <td class="count"><input class="reduceCss" id="jia1" value="-" type="button"/>
-               <input type="text" class="inputCountCss" id="inputCountCss1" name="orderweight" value="<%=order.getWeight()%>" size="8"/>
-               <input class="addCss" id="jia2" value="+" type="button"/></td>
+                <input type="text" class="inputCountCss" id="inputCountCss1" name="orderweight" value="<%=order.getWeight()%>" size="8"/>
+                <input class="addCss" id="jia2" value="+" type="button"/></td>
                 <input type="hidden" name="surplus" value="<%=vegetable.getSurplus()%>"/>
            <td id="stotal3"><%=order.getTotalprice()%></td>
            <input type="hidden" name="price" value="<%=order.getPrice()%>"/>

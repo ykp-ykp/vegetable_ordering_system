@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.example.vegetableorder.domain.User" %>
+<%@ page import="com.example.vegetableorder.dao.OperateUser" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 2020/6/23
@@ -13,13 +14,19 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
+<%
+    String username = (String) session.getAttribute("username");
+    User user = new OperateUser().getOneUser(username);
+%>
 <div class="header_con">
     <div class="header">
         <div class="fr">
             <div class="user_link fl">
-                <a href="/Dispatch/quit">退出</a>
+                <a href="/Dispatch/to_cart">我的购物车</a>
                 <span>|</span>
                 <a href="/Dispatch/toindex">返回首页</a>
+                <span>|</span>
+                <a href="/Dispatch/quit">退出</a>
             </div>
         </div>
     </div>
@@ -36,19 +43,20 @@
         <ul>
             <li><a href="/Dispatch/to_user_center_info" class="active">· 个人信息</a></li>
             <li><a href="/Dispatch/to_user_center_order">· 全部订单</a></li>
+            <li><a href="/Dispatch/to_alter_user_info">· 修改信息</a></li>
         </ul>
     </div>
     <div class="right_content clearfix">
         <div class="info_con clearfix">
             <h3 class="common_title2">基本信息</h3>
             <ul class="user_info_list">
-                <li><span>用户名：</span>18210569700</li>
-                <li><span>联系方式：</span>18210569700</li>
-                <li><span>联系地址：</span>北京市昌平区</li>
+                <li><span>用户名：</span><%=user.getName()%></li>
+                <li><span>密码：</span><%=user.getPassword()%></li>
+                <li><span>联系方式：</span><%=user.getPhone()%></li>
+                <li><span>联系地址：</span><%=user.getAddress()%></li>
             </ul>
         </div>
     </div>
 </div>
-
 </body>
 </html>
