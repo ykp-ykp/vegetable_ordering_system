@@ -23,7 +23,7 @@
                 <span>|</span>
                 <a href="/Dispatch/quit">退出</a>
                 <span>|</span>
-                <a href="/Dispatch/toindex">返回首页</a>
+                <a href="/">返回首页</a>
             </div>
         </div>
     </div>

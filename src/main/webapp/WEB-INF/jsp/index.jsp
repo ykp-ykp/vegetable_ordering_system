@@ -22,21 +22,21 @@
 <body>
 
 <%
-String username = (String) session.getAttribute("username");
-if (username==null)
-    username="";
+    String username = (String) session.getAttribute("username");
+    if (username==null)
+        username="";
 
-/*一下几行是判断返回到index页面是否有要显示弹框的信息*/
-String tooltips = (String) session.getAttribute("tooltips");
-if (tooltips!=null&&(!tooltips.equals(""))){%>
+    /*一下几行是判断返回到index页面是否有要显示弹框的信息*/
+    String tooltips = (String) session.getAttribute("tooltips");
+    if (tooltips!=null&&(!tooltips.equals(""))){%>
 <script>
     alert("<%=tooltips%>");
 </script>
 <%
-    /*输出一次就要及时删除，以免之后重复输出*/
-session.setAttribute("tooltips","" );
-session.removeAttribute("tooltips");
-}
+        /*输出一次就要及时删除，以免之后重复输出*/
+        session.setAttribute("tooltips","" );
+        session.removeAttribute("tooltips");
+    }
 %>
 <div class="header_con">
     <div class="header">
@@ -44,15 +44,15 @@ session.removeAttribute("tooltips");
         <div class="fr">
             <%
                 if (username.equals("")){%>
-                   <%-- 如果用户未登录，需要显示登录和注册链接--%>
-                <div class="login_btn fl">
-                     <a href="/Dispatch/tologin">登录</a>
-                    <span>|</span>
-                    <a href="/Dispatch/toregister">注册</a>
-                </div>
+            <%-- 如果用户未登录，需要显示登录和注册链接--%>
+            <div class="login_btn fl">
+                <a href="/Dispatch/tologin">登录</a>
+                <span>|</span>
+                <a href="/Dispatch/toregister">注册</a>
+            </div>
             <%}
-                else{%>
-                    <%--如果用户已登录，需要显示退出链接--%>
+            else{%>
+            <%--如果用户已登录，需要显示退出链接--%>
             <div class="login_btn fl">
                 <a href="/Dispatch/quit">退出</a>
             </div>
@@ -73,21 +73,21 @@ session.removeAttribute("tooltips");
 <%List<Vegetables> vegetablesList = new OperateVegetable().getAllVeg();%>
 
 <div class="search_bar clearfix">
-    <a href="/Dispatch/toindex" class="logo fl"><img src="/images/logo.png"></a>
+    <a href="/" class="logo fl"><img src="/images/logo.png"></a>
     <form action="/Dispatch/to_vegetable_info" method="post" onsubmit="return search()">
-    <div class="search_con fl">
-        <select data-placeholder="搜索商品"  style="width:400px !important;height: 32px" id="dept" name="dept" class="dept_select">
+        <div class="search_con fl">
+            <select data-placeholder="搜索商品"  style="width:400px !important;height: 32px" id="dept" name="dept" class="dept_select">
                 <option value=""></option>
-            <%
-                for (int i = 0; i < vegetablesList.size(); i++) {
-                    Vegetables vegetable = vegetablesList.get(i);%>
+                <%
+                    for (int i = 0; i < vegetablesList.size(); i++) {
+                        Vegetables vegetable = vegetablesList.get(i);%>
                 <option value="<%=vegetable.getName()%>"><%=vegetable.getName()%></option>
-            <%}
-            %>
-        </select>
+                <%}
+                %>
+            </select>
             <input type="hidden" value="" id="searchvegetable" name="vegetablename">
             <input type="submit"  class="input_btn fr" id="tosearch" value="搜索"/>
-    </div>
+        </div>
     </form>
 </div>
 
@@ -123,13 +123,13 @@ session.removeAttribute("tooltips");
         <ul class="goods_list fl">
             <%
                 for (int i=0;i<vegetablesList.size();i++){
-                Vegetables vegetables = vegetablesList.get(i);
+                    Vegetables vegetables = vegetablesList.get(i);
             %>
-                <li>
-                    <h4><a href="/Dispatch/to_vegetable_info?vegetablename=<%=vegetables.getName()%>"><%=vegetables.getName()%></a></h4>
-                    <a href="/Dispatch/to_vegetable_info?vegetablename=<%=vegetables.getName()%>"><img src="<%=vegetables.getImage()%>"></a>
-                    <div class="prize"><%=vegetables.getPrice()%></div>
-                </li>
+            <li>
+                <h4><a href="/Dispatch/to_vegetable_info?vegetablename=<%=vegetables.getName()%>"><%=vegetables.getName()%></a></h4>
+                <a href="/Dispatch/to_vegetable_info?vegetablename=<%=vegetables.getName()%>"><img src="<%=vegetables.getImage()%>"></a>
+                <div class="prize"><%=vegetables.getPrice()%></div>
+            </li>
             <%}
             %>
         </ul>

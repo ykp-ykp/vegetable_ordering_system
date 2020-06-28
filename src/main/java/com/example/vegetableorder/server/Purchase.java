@@ -68,7 +68,7 @@ public class Purchase {
                 e.printStackTrace();
             }
 
-            return "index";
+            return "redirect:/";
         }
 
     }
@@ -76,7 +76,7 @@ public class Purchase {
     @RequestMapping("/directbuy")
     public String directbuy(HttpSession session, HttpServletRequest request){
         add_cart(session,request );
-        return "index";
+        return "redirect:/";
     }
 
     @RequestMapping("/DeleteOrders")
@@ -123,6 +123,6 @@ public class Purchase {
             }
         }
 
-        return "index";
+        return "redirect:/";
     }
 }

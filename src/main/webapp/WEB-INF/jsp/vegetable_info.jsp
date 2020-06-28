@@ -27,6 +27,8 @@
 	if (username==null)
 		username="";
 %>
+<%--这个标签存储用户名，用于加入购物车或者购买的时候检测用户是否登录--%>
+<input type="hidden" id="username" value="<%=username%>">
 <div class="header_con">
 	<div class="header">
 		<div class="welcome fl">欢迎<b style="color: #5fb42a;font-size: 25px"><%=username%></b>来到天天生鲜!</div>
@@ -60,7 +62,7 @@
 </div>
 
 <div class="search_bar clearfix">
-	<a href="/Dispatch/toindex" class="logo fl"><img src="/images/logo.png"></a>
+	<a href="/" class="logo fl"><img src="/images/logo.png"></a>
 	<div class="guest_cart fr">
 		<a href="cart.html" class="cart_name fl">我的购物车</a>
 		<div class="goods_count fl" id="show_count">1</div>
@@ -70,13 +72,13 @@
 <div class="navbar_con">
 	<div class="navbar clearfix">
 		<ul class="navlist fl">
-			<li><a href="/Dispatch/toindex">首页</a></li>
+			<li><a href="/">首页</a></li>
 		</ul>
 	</div>
 </div>
 
 <div class="breadcrumb">
-	<a href="/Dispatch/toindex">首页</a>
+	<a href="/">首页</a>
 	<span>></span>
 	<a href="#">商品详情</a>
 </div>

@@ -1,33 +1,38 @@
 function check_weight() {
+    var username = $("#username").val();
     var weight = $("#weight").val();
     weight = parseFloat(weight);
     if (weight<=0){
         alert("购买数量不正确");
         return false;
-       // $('#add_cart').removeAttr('href');//去掉a标签中的href属性
     }
-    else{
+    else if (username==""){
+        alert("用户未登录！");
+        return false;
+    }
+    else
+        {
         alert("加入购物车成功！");
         return true
-        /*$("#add_cart").attr("href","/Purchase/add_cart")
-        $("#add_cart").next().hide();*/
     }
 
 }
 
 function check_weight_buy() {
+    var username = $("#username").val();
     var weight = $("#weight").val();
     weight = parseFloat(weight);
     if (weight<=0){
         alert("购买数量不正确");
         return false;
-        // $('#add_cart').removeAttr('href');//去掉a标签中的href属性
+    }
+    else if (username==""){
+        alert("用户未登录！");
+        return false;
     }
     else{
         alert("购买成功！");
         return true
-        /*$("#add_cart").attr("href","/Purchase/add_cart")
-        $("#add_cart").next().hide();*/
     }
 
 }

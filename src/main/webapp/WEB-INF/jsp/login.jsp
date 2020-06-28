@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="login_top clearfix">
-    <a href="/Dispatch/toindex" class="login_logo"><img src="/images/logo02.png"></a>
+    <a href="/" class="login_logo"><img src="/images/logo02.png"></a>
 </div>
 
 <div class="login_form_bg">

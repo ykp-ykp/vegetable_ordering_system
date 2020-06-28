@@ -32,7 +32,7 @@
             <div class="user_link fl">
                 <a href="/Dispatch/to_user_center_info">用户中心</a>
                 <span>|</span>
-                <a href="/Dispatch/toindex">返回首页</a>
+                <a href="/">返回首页</a>
                 <span>|</span>
                 <a href="/Dispatch/quit">退出</a>
             </div>
@@ -40,7 +40,7 @@
     </div>
 </div>
 <div class="search_bar clearfix">
-    <a href="/Dispatch/toindex" class="logo fl"><img src="/images/logo.png"></a>
+    <a href="/" class="logo fl"><img src="/images/logo.png"></a>
     <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;购物车</div>
 </div>
 

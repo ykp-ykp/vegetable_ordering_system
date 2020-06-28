@@ -38,7 +38,7 @@ public class Controller {
                 return "admin_functions";
             else
                 //登陆成功
-                return "index";
+                return "redirect:/";
         }
         else {
             request.setAttribute("error","登陆失败" );

@@ -24,7 +24,7 @@ public class Dispatch {
 
     @RequestMapping("/toindex")
     public String index(){
-        return "index";
+        return "redirect:/";
     }
 
     @RequestMapping("/toregister")
