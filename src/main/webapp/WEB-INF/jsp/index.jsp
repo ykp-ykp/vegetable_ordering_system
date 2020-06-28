@@ -75,10 +75,6 @@ session.removeAttribute("tooltips");
         <input type="text" class="input_text fl" name="" placeholder="搜索商品">
         <input type="button" class="input_btn fr" name="" value="搜索">
     </div>
-    <div class="guest_cart fr">
-        <a href="#" class="cart_name fl">我的购物车</a>
-        <div class="goods_count fl" id="show_count">1</div>
-    </div>
 </div>
 
 
@@ -98,6 +94,9 @@ session.removeAttribute("tooltips");
     <div class="adv fl">
         <a href="#"><img src="/images/adv01.jpg"></a>
         <a href="#"><img src="/images/adv02.jpg"></a>
+    </div>
+    <div style="height: 270px">
+        <a href="#"><img src="/images/banner05.jpg"></a>
     </div>
 </div>
 

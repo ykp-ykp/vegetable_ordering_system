@@ -110,7 +110,7 @@
 		<div class="goods_num clearfix">
 			<div class="num_name fl">数 量：</div>
 			<div class="num_add fl">
-				<%--下面那个value通过request怎么或去不到啊--%>
+
 				<input type="text" class="num_show fl" value="0" id="weight" name="weight">
 				<a href="#" class="add fr" id="add" onclick="add()">+</a>
 				<a href="#" class="minus fr" id="subtract" onclick="subtract()">-</a>
@@ -120,14 +120,16 @@
 		<table class="operate_btn">
             <tr>
                 <td>
-                    <form action="" class="">
-                         <a href="" class="buy_btn">立即购买</a>
+                    <form action="/Purchase/directbuy?state=1"  onsubmit="return check_weight_buy()" method="post">
+						<input type="hidden" name="form_weight_directbuy" id="form_weight_directbuy" value="0">
+						<input type="hidden" name="form_totalprice_directbuy" id="form_totalprice_directbuy" value="0">
+                        <button type="submit" class="buy_btn" id="buy_btn">立即购买</button>
                     </form>
                 </td>
                 <td>
-                    <form action="/Purchase/add_cart" onclick="return check_weight()" method="post">
-                        <input type="hidden" name="form_weight" id="form_weight" value="0">
-                        <input type="hidden" name="form_totalprice" id="form_totalprice" value="0">
+                    <form action="/Purchase/add_cart?state=0" onclick="return check_weight()" method="post">
+                        <input type="text" name="form_weight" id="form_weight" value="0">
+                        <input type="text" name="form_totalprice" id="form_totalprice" value="0">
                         <button class="add_cart" type="submit" id="add_cart">加入购物车</button>
                         <%--<a href="/Purchase/add_cart" type="" class="add_cart" id="add_cart" onclick="check_weight()">加入购物车</a>--%>
                     </form>

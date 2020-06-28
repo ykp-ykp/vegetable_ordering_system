@@ -22,7 +22,7 @@ public class Purchase {
     OperateVegetable operateVegetable = new OperateVegetable();
 
     @RequestMapping("/add_cart")
-    public String add_cart(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+    public String add_cart(HttpSession session, HttpServletRequest request){
         String username = (String) session.getAttribute("username");
         if(username==null|| username.equals("")){
             request.setAttribute("error","你还未登录，请去登录！" );
@@ -30,15 +30,27 @@ public class Purchase {
             return "ErroePage";
         }
         else{
+            int state = Integer.parseInt(request.getParameter("state")); //订单状态
+            /*如果订单状态是1说明是直接购买的，所以request.getParameter应该从直接购买提交过来的表单取数据
+            * 否则应从加入购物车表单提交过来的数据*/
             String vegetablename = (String) session.getAttribute("vegetablename");
-            double weight = Double.parseDouble(request.getParameter("form_weight"));
+            double weight=0;
+            double totalprice=0;
+            if(state==0){
+                weight = Double.parseDouble(request.getParameter("form_weight"));
+                totalprice = Double.parseDouble(request.getParameter("form_totalprice"));
+            }
+            else{
+                weight = Double.parseDouble(request.getParameter("form_weight_directbuy"));
+                totalprice = Double.parseDouble(request.getParameter("form_totalprice_directbuy"));
+            }
+
             User user = new OperateUser().getOneUser(username);
             Vegetables vegetables = new OperateVegetable().getOneVeg(vegetablename);
             System.out.println(user);
             double price = vegetables.getPrice();
-            double totalprice = Double.parseDouble(request.getParameter("form_totalprice"));
+
             int ismember = user.getIsmember();
-            int state = 0;//订单状态
             Date date = new Date();//获取当前的日期
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             String time = df.format(date);//获取String类型的时间
@@ -59,6 +71,12 @@ public class Purchase {
             return "index";
         }
 
+    }
+
+    @RequestMapping("/directbuy")
+    public String directbuy(HttpSession session, HttpServletRequest request){
+        add_cart(session,request );
+        return "index";
     }
 
     @RequestMapping("/DeleteOrders")

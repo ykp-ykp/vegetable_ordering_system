@@ -1,9 +1,7 @@
 package com.example.vegetableorder.server;
 
 import com.example.vegetableorder.dao.OperateUser;
-import com.example.vegetableorder.dao.OperateVegetable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
