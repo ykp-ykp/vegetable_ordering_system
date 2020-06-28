@@ -61,10 +61,6 @@
 
 <div class="search_bar clearfix">
 	<a href="/Dispatch/toindex" class="logo fl"><img src="/images/logo.png"></a>
-	<div class="search_con fl">
-		<input type="text" class="input_text fl" name="" placeholder="搜索商品">
-		<input type="button" class="input_btn fr" name="" value="搜索">
-	</div>
 	<div class="guest_cart fr">
 		<a href="cart.html" class="cart_name fl">我的购物车</a>
 		<div class="goods_count fl" id="show_count">1</div>
@@ -128,8 +124,8 @@
                 </td>
                 <td>
                     <form action="/Purchase/add_cart?state=0" onclick="return check_weight()" method="post">
-                        <input type="text" name="form_weight" id="form_weight" value="0">
-                        <input type="text" name="form_totalprice" id="form_totalprice" value="0">
+                        <input type="hidden" name="form_weight" id="form_weight" value="0">
+                        <input type="hidden" name="form_totalprice" id="form_totalprice" value="0">
                         <button class="add_cart" type="submit" id="add_cart">加入购物车</button>
                         <%--<a href="/Purchase/add_cart" type="" class="add_cart" id="add_cart" onclick="check_weight()">加入购物车</a>--%>
                     </form>

@@ -13,9 +13,11 @@
     <title>天天生鲜-首页</title>
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/chosen.css">
+    <script type="text/javascript" src="js/jquery-1.7.1.js"></script>
     <script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="/js/slide.js"></script>
+    <script type="text/javascript" src="js/chosen.jquery.js"></script>
 </head>
 <body>
 
@@ -68,13 +70,25 @@ session.removeAttribute("tooltips");
         </div>
     </div>
 </div>
+<%List<Vegetables> vegetablesList = new OperateVegetable().getAllVeg();%>
 
 <div class="search_bar clearfix">
     <a href="/Dispatch/toindex" class="logo fl"><img src="/images/logo.png"></a>
+    <form action="/Dispatch/to_vegetable_info" method="post" onsubmit="return search()">
     <div class="search_con fl">
-        <input type="text" class="input_text fl" name="" placeholder="搜索商品">
-        <input type="button" class="input_btn fr" name="" value="搜索">
+        <select data-placeholder="搜索商品"  style="width:400px !important;height: 32px" id="dept" name="dept" class="dept_select">
+                <option value=""></option>
+            <%
+                for (int i = 0; i < vegetablesList.size(); i++) {
+                    Vegetables vegetable = vegetablesList.get(i);%>
+                <option value="<%=vegetable.getName()%>"><%=vegetable.getName()%></option>
+            <%}
+            %>
+        </select>
+            <input type="hidden" value="" id="searchvegetable" name="vegetablename">
+            <input type="submit"  class="input_btn fr" id="tosearch" value="搜索"/>
     </div>
+    </form>
 </div>
 
 
@@ -104,9 +118,6 @@ session.removeAttribute("tooltips");
 <div class="list_model">
 
     <%--x下面要显示蔬菜，需要获取数据库的蔬菜信息--%>
-        <%
-            List<Vegetables> vegetablesList = new OperateVegetable().getAllVeg();
-        %>
     <div class="goods_con clearfix">
         <div class="goods_banner fl"><img src="/images/banner01.jpg"></div>
         <ul class="goods_list fl">
@@ -124,5 +135,15 @@ session.removeAttribute("tooltips");
         </ul>
     </div>
 </div>
+<script>
+    $(function(){
+        $('.dept_select').chosen();
+    });
+    function search() {
+        var vegetablename = $('#dept').val();
+        $('#searchvegetable').val(vegetablename);
+        return true;
+    }
+</script>
 </body>
 </html>

@@ -35,6 +35,7 @@ public class Dispatch {
     @RequestMapping("/to_vegetable_info")
     public String to_vegetable_info(HttpSession session, HttpServletRequest request){
         String vegetablename = request.getParameter("vegetablename");
+        System.out.println(vegetablename);
         session.setAttribute("vegetablename", vegetablename);
         return "vegetable_info";
     }

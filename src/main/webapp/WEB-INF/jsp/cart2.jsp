@@ -2,7 +2,9 @@
 <%@ page import="com.example.vegetableorder.dao.OperateOrders" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.vegetableorder.domain.Vegetables" %>
-<%@ page import="com.example.vegetableorder.dao.OperateVegetable" %><%--
+<%@ page import="com.example.vegetableorder.dao.OperateVegetable" %>
+<%@ page import="com.example.vegetableorder.dao.OperateUser" %>
+<%@ page import="com.example.vegetableorder.domain.User" %><%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 2020/6/24
@@ -42,9 +44,23 @@
     <div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;购物车</div>
 </div>
 
+<%
+    User user = new OperateUser().getOneUser(username);
+%>
+<h3 class="common_title">确认收货地址</h3>
+<div class="common_list_con clearfix">
+    <dl>
+        <dt>寄送到：</dt>
+        <dd><input type="radio" name="" checked=""><%=user.getAddress()%> （<%=user.getName()%> 收） <%=user.getPhone()%></dd>
+    </dl>
+    <a href="/Dispatch/to_alter_user_info" class="edit_site">编辑收货地址</a>
+
+</div>
+
+
 <div id="page">
 <div id="listdiv">
-   <table width="750" cellpadding="0" cellspacing="0" id="gwcTable">
+   <table style="border-top:2px solid #00bc6f;" width="750" cellpadding="0" cellspacing="0" id="gwcTable">
     <tr>
       <td width="79"><input type="checkbox" id="checkAll" />全选</td>
       <td width="175">商品</td>
