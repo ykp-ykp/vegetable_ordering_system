@@ -42,27 +42,27 @@
                     </li>
                     <li>
                         <label>密码:</label>
-                        <input type="text" name="pwd" id="pwd" value="<%=user.getPassword()%>">
+                        <input type="text" name="pwd" id="pwd" value="<%=user.getPassword()%>" placeholder="<%=user.getPassword()%>">
                         <span class="error_tip">提示信息</span>
                     </li>
                     <li>
                         <label>手机号:</label>
-                        <input type="text" name="phone" id="phone" value="<%=user.getPhone()%>">
+                        <input type="text" name="phone" id="phone" value="<%=user.getPhone()%>" placeholder="<%=user.getPhone()%>">
                         <span class="error_tip">提示信息</span>
                     </li>
                     <li>
                         <label>地址:</label>
-                        <input type="text" name="address" id="address" value="<%=user.getAddress()%>">
+                        <input type="text" name="address" id="address" value="<%=user.getAddress()%>" placeholder="<%=user.getAddress()%>">
                         <span class="error_tip">提示信息</span>
                     </li>
                     <li>
                         <label>密保问题:</label>
-                        <input type="text" name="tooltips" id="tooltips" value="<%=user.getTooltips()%>">
+                        <input type="text" name="tooltips" id="tooltips" value="<%=user.getTooltips()%>" placeholder="<%=user.getTooltips()%>">
                         <span class="error_tip">提示信息</span>
                     </li>
                     <li>
                         <label>密保答案:</label>
-                        <input type="text" name="answer" id="answer" value=<%=user.getAnswer()%>>
+                        <input type="text" name="answer" id="answer" value="<%=user.getAnswer()%>" placeholder="<%=user.getAnswer()%>">
                         <span class="error_tip">提示信息</span>
                     </li>
                     <li class="reg_sub">

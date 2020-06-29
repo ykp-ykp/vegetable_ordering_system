@@ -1,12 +1,11 @@
-<%@ page import="com.example.vegetableorder.domain.Administrator" %>
-<%@ page import="com.example.vegetableorder.dao.OperateAdmin" %>
-<%@ page import="com.example.vegetableorder.domain.User" %>
-<%@ page import="com.example.vegetableorder.dao.OperateUser" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.vegetableorder.domain.Vegetables" %>
+<%@ page import="com.example.vegetableorder.dao.OperateVegetable" %>
+<%--
   Created by IntelliJ IDEA.
   User: ASUS
   Date: 2020/6/29
-  Time: 12:17
+  Time: 21:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,9 +18,7 @@
     <script type="text/javascript" src="/js/table_search.js"></script>
 </head>
 <body>
-<%
-    List<User> alluser = new OperateUser().getAllUser();
-%>
+<%List<Vegetables> allvegetables = new OperateVegetable().getAllVeg();%>
 <div class="header_con">
     <div class="header">
         <div class="fr">
@@ -46,33 +43,33 @@
             <li><a href="/Dispatch/to_admin_center_info">· 个人信息</a></li>
             <li><a href="/Dispatch/to_alter_admin_info">· 修改密码</a></li>
             <li><a href="/Dispatch/to_admin_center_allorder">· 全部订单</a></li>
-            <li><a href="/Dispatch/to_admin_center_alluser" class="active">· 用户信息</a></li>
-            <li><a href="/Dispatch/to_admin_center_allvegetable">· 蔬菜信息</a></li>
+            <li><a href="/Dispatch/to_admin_center_alluser">· 用户信息</a></li>
+            <li><a href="/Dispatch/to_admin_center_allvegetable" class="active">· 蔬菜信息</a></li>
         </ul>
     </div>
     <div class="right_content clearfix">
         <input type="text" id="lin" class="admin_search_user" placeholder="请输入需要搜索的内容">
         <table id="table-1" cellspacing='0' border="1" class="order_list_table w980">
             <tr>
-                <th>用户名</th>
-                <th>密码</th>
-                <th>电话</th>
-                <th>地址</th>
-                <th>密保问题</th>
-                <th>答案</th>
+                <th>蔬菜名</th>
+                <th>图片</th>
+                <th>价格</th>
+                <th>余量</th>
+                <th>简介</th>
+                <th>图片地址</th>
             </tr>
             <%
-                for (int i = 0; i < alluser.size(); i++) {
-                    User user = alluser.get(i);%>
-            <form action="/Dispatch/to_admin_alter_user" method="post">
-                <input type="hidden" name="altered_username" value="<%=user.getName()%>">
+                for (int i = 0; i < allvegetables.size(); i++) {
+                    Vegetables vegetable = allvegetables.get(i);%>
+            <form action="/Dispatch/to_admin_alter_vegetable" method="post">
+                <input type="hidden" name="altered_vegetablename" value="<%=vegetable.getName()%>">
                 <tr>
-                    <td><%=user.getName()%></td>
-                    <td><%=user.getPassword()%></td>
-                    <td><%=user.getPhone()%></td>
-                    <td><%=user.getAddress()%></td>
-                    <td><%=user.getTooltips()%></td>
-                    <td><%=user.getAnswer()%></td>
+                    <td><%=vegetable.getName()%></td>
+                    <td><img style="width: 60px;height: 60px" src="<%=vegetable.getImage()%>"></td>
+                    <td><%=vegetable.getPrice()%></td>
+                    <td><%=vegetable.getSurplus()%></td>
+                    <td style="font-size: 10px"><%=vegetable.getIntroduction()%></td>
+                    <td style="font-size: 10px"><%=vegetable.getImage()%></td>
                     <td><button type="submit" id="searchuser" name="searchuser">修改</button></td>
                 </tr>
             </form>

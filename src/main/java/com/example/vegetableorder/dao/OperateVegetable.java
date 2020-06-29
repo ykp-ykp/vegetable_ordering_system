@@ -49,4 +49,8 @@ public class OperateVegetable {
         jdbcTemplate.update("update vegetables set surplus = ? where name=?",surplus,name);
     }
 
+    public void alter(String name,double price,double surplus,String image,String introduction){
+        jdbcTemplate.update("update vegetables set price = ?,surplus = ? ,image = ?,introduction = ? where name=?",
+                price,surplus,image,introduction,name);
+    }
 }

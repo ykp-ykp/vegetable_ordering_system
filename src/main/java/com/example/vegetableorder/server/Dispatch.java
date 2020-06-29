@@ -138,6 +138,23 @@ public class Dispatch {
             return "admin_alter_user";
     }
 
+    @RequestMapping("/to_admin_center_allvegetable")
+    public String to_admin_center_allvegetable(HttpSession session, HttpServletRequest request){
+        String adminname = (String) session.getAttribute("adminname");
+        if(notlogin(adminname, "请先登录", "tologin", request))
+            return "ErroePage";
+        else
+            return "admin_center_allvegetable";
+    }
+
+    @RequestMapping("/to_admin_alter_vegetable")
+    public String to_admin_alter_vegetable(HttpSession session, HttpServletRequest request){
+        String adminname = (String) session.getAttribute("adminname");
+        if(notlogin(adminname, "请先登录", "tologin", request))
+            return "ErroePage";
+        else
+            return "admin_alter_vegetable";
+    }
 
 
 

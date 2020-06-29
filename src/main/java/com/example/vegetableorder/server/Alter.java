@@ -2,6 +2,7 @@ package com.example.vegetableorder.server;
 
 import com.example.vegetableorder.dao.OperateAdmin;
 import com.example.vegetableorder.dao.OperateUser;
+import com.example.vegetableorder.dao.OperateVegetable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -51,6 +52,22 @@ public class Alter {
 
         //修改完之后返回管理员界面
         return "redirect:/Dispatch/to_admin_center_alluser";
+    }
+
+    @RequestMapping("/to_admin_alter_vegetable")
+    public String admin_alter_vegetable(HttpSession session, HttpServletRequest request){
+        String vegetablename = request.getParameter("vegetablename");
+        double price = Double.parseDouble(request.getParameter("price"));
+        double surplus = Double.parseDouble(request.getParameter("surplus"));
+        String image = request.getParameter("image");
+        String introduction = request.getParameter("introduction");
+
+
+        System.out.println(vegetablename+"---"+price+"---"+ surplus+"---"+image+"---"+introduction);
+        new OperateVegetable().alter(vegetablename,price,surplus,image,introduction);
+
+        //修改完之后返回管理员界面
+        return "redirect:/Dispatch/to_admin_center_allvegetable";
     }
 
 
