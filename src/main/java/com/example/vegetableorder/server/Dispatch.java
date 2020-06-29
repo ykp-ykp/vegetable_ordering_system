@@ -1,5 +1,6 @@
 package com.example.vegetableorder.server;
 
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,8 @@ public class Dispatch {
         //退出时，只需要把session存储的用户名删掉，让在跳转到其他界面的时候无法获取用户即可
         session.setAttribute("username", null);
         session.removeAttribute("username");
+        session.setAttribute("adminname", null);
+        session.removeAttribute("adminname");
         return "redirect:/Dispatch/tologin";
     }
 
@@ -88,6 +91,46 @@ public class Dispatch {
         }
         else
             return "cart2";
+    }
+
+    @RequestMapping("/to_admin_center_info")
+    public String to_admin_center_info(HttpSession session, HttpServletRequest request){
+        String adminname = (String) session.getAttribute("adminname");
+        if(notlogin(adminname, "请先登录", "tologin", request))
+            return "ErroePage";
+        else
+            return "admin_center_info";
+    }
+
+    @RequestMapping("/to_alter_admin_info")
+    public String to_alter_admin_info(HttpSession session, HttpServletRequest request){
+        String adminname = (String) session.getAttribute("adminname");
+        if(notlogin(adminname, "请先登录", "tologin", request))
+            return "ErroePage";
+        else
+            return "alter_admin_info";
+    }
+
+    @RequestMapping("/to_admin_center_allorder")
+    public String to_admin_center_allorder(HttpSession session, HttpServletRequest request){
+        String adminname = (String) session.getAttribute("adminname");
+        if(notlogin(adminname, "请先登录", "tologin", request))
+            return "ErroePage";
+        else
+            return "admin_center_allorder";
+    }
+
+
+
+
+    public boolean notlogin(String name,String tooltips,String topage,HttpServletRequest request){
+        if(name==null|| name.equals("")){
+            request.setAttribute("error",tooltips );
+            request.setAttribute("pagename",topage );
+            return true;
+        }
+        else
+            return false;
     }
 
 }

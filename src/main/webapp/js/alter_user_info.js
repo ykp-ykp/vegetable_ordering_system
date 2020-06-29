@@ -82,3 +82,16 @@ function checkall(){
         return false;
     }
 }
+
+/*因为管理员只可以修改密码，所以只需要判断密码格式是否正确和检验当前输入的密码与数据库中的是否相同*/
+function checkall_admin(){
+    if(error_password == false && error_check_password == false)
+    {
+        alert("修改成功");
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

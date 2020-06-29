@@ -1,5 +1,6 @@
 package com.example.vegetableorder.server;
 
+import com.example.vegetableorder.dao.OperateAdmin;
 import com.example.vegetableorder.dao.OperateUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
@@ -24,4 +25,17 @@ public class Alter {
         session.removeAttribute("username");
         return "redirect:/Dispatch/tologin";
     }
+
+    @RequestMapping("/Alteradmin")
+    public String Alteradmin(HttpSession session, HttpServletRequest request){
+        String adminname = (String) session.getAttribute("adminname");
+        String password = request.getParameter("password");
+
+        new OperateAdmin().alterpwd(adminname,password);
+        //修改密码之后让管理员自动退出，并返回登录界面
+        session.setAttribute("adminname", null);
+        session.removeAttribute("adminname");
+        return "redirect:/Dispatch/tologin";
+    }
+
 }

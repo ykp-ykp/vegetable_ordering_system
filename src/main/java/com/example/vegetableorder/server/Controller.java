@@ -18,7 +18,6 @@ public class Controller {
     public String User_Login(HttpSession session, HttpServletRequest request, HttpServletResponse response){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        session.setAttribute("username",username );
         session.setMaxInactiveInterval(600);
 
         //获取复选框的admin是否选中，如果选中就作为管理员的登录
@@ -34,11 +33,16 @@ public class Controller {
         }
 
         if(b==true){
-            if(isadmin.equals("isadmin"))
-                return "admin_functions";
-            else
-                //登陆成功
+            if(isadmin.equals("isadmin")){
+                session.setAttribute("adminname", username);
+                return "admin_center_info";
+            }
+
+            else{
+                session.setAttribute("username",username );
+                //用户登陆成功
                 return "redirect:/";
+            }
         }
         else {
             request.setAttribute("error","登陆失败" );

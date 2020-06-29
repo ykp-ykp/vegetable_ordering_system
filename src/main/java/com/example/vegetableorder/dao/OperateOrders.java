@@ -17,8 +17,8 @@ public class OperateOrders {
     JdbcTemplate jdbcTemplate = new JdbcTemplate(applicationContext.getBean(DataSource.class));
 
 
-    public List<Orders> getAllOrders(){
-        return jdbcTemplate.query("select * from orders",new BeanPropertyRowMapper<>(Orders.class));
+    public List<Orders> getAllOrders(int state){
+        return jdbcTemplate.query("select * from orders where state = ?",new BeanPropertyRowMapper<>(Orders.class),state);
     }
 
     public List<Orders> getMyOrders(String username){

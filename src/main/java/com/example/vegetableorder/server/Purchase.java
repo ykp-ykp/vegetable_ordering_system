@@ -1,6 +1,5 @@
 package com.example.vegetableorder.server;
 
-import com.example.vegetableorder.dao.OperateAdmin;
 import com.example.vegetableorder.dao.OperateOrders;
 import com.example.vegetableorder.dao.OperateUser;
 import com.example.vegetableorder.dao.OperateVegetable;
@@ -8,9 +7,7 @@ import com.example.vegetableorder.domain.Orders;
 import com.example.vegetableorder.domain.User;
 import com.example.vegetableorder.domain.Vegetables;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -58,11 +55,7 @@ public class Purchase {
             try {
                 Orders orders = new Orders(username,vegetablename,weight,price,totalprice,ismember,state,time);
                 new OperateOrders().insert(orders);
-               /* 更新蔬菜余量（不更新了，只有在结账的时候才会更新）
-                double surplus = vegetables.getSurplus();
-                surplus-=weight;
-                operateVegetable.altersurplus(vegetablename,surplus );*/
-                //session.setAttribute("tooltips","加入购物车成功！" );
+               /* 更新蔬菜余量（不更新了，只有在结账的时候才会更新）*/
             } catch (Exception e) {
                 session.setAttribute("tooltips","加入购物车失败！" );
                 e.printStackTrace();
@@ -88,11 +81,6 @@ public class Purchase {
 
         //删除之后需要把余量加进去（不需要了）
         //我改成了只有结账才需要加减，加入购车不加减
-       /* double surplus = new OperateVegetable().getOneVeg(vegetablename).getSurplus();
-        double weight = Double.parseDouble(request.getParameter("orderweight"));
-        surplus+=weight;
-        new OperateVegetable().altersurplus(vegetablename,surplus );*/
-
         return "cart2";
     }
 

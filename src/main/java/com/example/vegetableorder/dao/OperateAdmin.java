@@ -52,4 +52,7 @@ public class OperateAdmin {
         jdbcTemplate.update("delete from adminuser where name=?",name);
     }
 
+    public void alterpwd(String name,String password){
+        jdbcTemplate.update("update adminuser set password = ? where name=?",password,name);
+    }
 }

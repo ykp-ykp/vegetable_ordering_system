@@ -455,10 +455,12 @@ html,body{height:100%}
 
 
 .order_list_th{width:1198px;border:1px solid #ddd;background-color:#f7f7f7;margin:20px auto 0;}
-.order_list_th li{float:left;height:30px;line-height:30px}
-.order_list_th .col01{width:20%;margin-left:185px}
-.order_list_th .col02{width:20%;margin-left:10px}
-
+.order_list_th li{float:left;height:30px;line-height:30px;margin-left:65px}
+.order_list_th .col00{width:20%;margin-left:10px}
+.order_list_th .col01{width:10%;margin-left:180px}
+.order_list_th .col02{width:8%;margin-left:115px}
+.order_list_th .col03{width:3%;margin-left:70px}
+.order_list_th .col04{width:8%;margin-left:115px}
 
 .order_list_table{
 	width:1200px;
