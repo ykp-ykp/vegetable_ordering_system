@@ -11,7 +11,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>天天生鲜-管理员中心</title>
@@ -38,7 +37,7 @@
 
 <div class="main_con clearfix">
     <div class="left_menu_con clearfix">
-        <h3>用户中心</h3>
+        <h3>管理员中心</h3>
         <ul>
             <li><a href="/Dispatch/to_admin_center_info">· 个人信息</a></li>
             <li><a href="/Dispatch/to_alter_admin_info">· 修改密码</a></li>

@@ -40,7 +40,7 @@
 
 <div class="main_con clearfix">
     <div class="left_menu_con clearfix">
-        <h3>用户中心</h3>
+        <h3>管理员中心</h3>
         <ul>
             <li><a href="/Dispatch/to_admin_center_info" class="active">· 个人信息</a></li>
             <li><a href="/Dispatch/to_alter_admin_info">· 修改密码</a></li>
