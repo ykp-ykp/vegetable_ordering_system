@@ -51,8 +51,8 @@
             <h3 class="common_title2">基本信息</h3>
             <ul class="user_info_list">
                 <li><span>用户名：</span><%=user.getName()%></li>
-                <li><span>联系方式：</span><%=user.getPhone()%></li>
-                <li><span>联系地址：</span><%=user.getAddress()%></li>
+                <li><span>手机号：</span><%=user.getPhone()%></li>
+                <li><span>地址：</span><%=user.getAddress()%></li>
             </ul>
         </div>
     </div>

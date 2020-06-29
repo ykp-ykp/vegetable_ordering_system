@@ -44,9 +44,10 @@ function Search(objId, inputId) {
         var contentsArr = contents.split(this.inpIdContents); // 以搜索框中的内容将td的值进行分割成数组
         var contentArrFirst = contentsArr[0]; // 将数组里的第一个值取出
         for (var j = 1; j < contentsArr.length; j++) {// 将分割出来的内容进行染色后重新组合在一起
-          contentArrFirst += "<span style='color:red;'>" + this.inpIdContents + "</span>" + contentsArr[j];
+          contentArrFirst += "<span style='color:#37ab40;'>" + this.inpIdContents + "</span>" + contentsArr[j];
         };
-        tableTrTdContent.eq(a).html(contentArrFirst); // 将td里的值从新解析成html
+        /*
+          tableTrTdContent.eq(a).html(contentArrFirst); // 将td里的值从新解析成html*/
       }
 
     }

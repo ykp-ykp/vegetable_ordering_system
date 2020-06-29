@@ -38,4 +38,20 @@ public class Alter {
         return "redirect:/Dispatch/tologin";
     }
 
+    @RequestMapping("/to_admin_alter_user")
+    public String admin_alter_user(HttpSession session, HttpServletRequest request){
+        String username = request.getParameter("username");
+        String password = request.getParameter("pwd");
+        String address = request.getParameter("address");
+        String phone = request.getParameter("phone");
+        String tooltips = request.getParameter("tooltips");
+        String answer = request.getParameter("answer");
+        System.out.println(username+"---"+password+"---"+ phone+"---"+address+"---"+tooltips+"---"+answer);
+        new OperateUser().alter(username, password, phone, address, tooltips,answer);
+
+        //修改完之后返回管理员界面
+        return "redirect:/Dispatch/to_admin_center_alluser";
+    }
+
+
 }

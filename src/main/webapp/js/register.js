@@ -98,7 +98,7 @@ $(function(){
         {
             $('#phone').next().html('你输入的手机号格式不正确')
             $('#phone').next().show();
-            error_check_password = true;
+            error_phone = true;
         }
 
     }
@@ -109,6 +109,19 @@ function checkall(){
     if(error_name == false && error_password == false && error_check_password == false && error_phone == false && error_check == false)
     {
         alert("注册成功");
+        return true;
+    }
+    else
+    {
+        console.log("提交失败")
+        return false;
+    }
+}
+
+function admin_alter_user_checkall(){
+    if(error_name == false && error_password == false && error_phone == false)
+    {
+        alert("修改成功");
         return true;
     }
     else

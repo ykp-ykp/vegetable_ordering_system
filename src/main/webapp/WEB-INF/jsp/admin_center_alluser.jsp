@@ -22,6 +22,8 @@
 <%
     String adminname = (String) session.getAttribute("adminname");
     Administrator admin = new OperateAdmin().getOneAdmin(adminname);
+    List<User> alluser = new OperateUser().getAllUser();
+
 %>
 <div class="header_con">
     <div class="header">
@@ -44,38 +46,29 @@
     <div class="left_menu_con clearfix">
         <h3>用户中心</h3>
         <ul>
-            <li><a href="/Dispatch/to_admin_center_info" class="active">· 个人信息</a></li>
+            <li><a href="/Dispatch/to_admin_center_info">· 个人信息</a></li>
             <li><a href="/Dispatch/to_alter_admin_info">· 修改密码</a></li>
             <li><a href="/Dispatch/to_admin_center_allorder">· 全部订单</a></li>
-            <li><a href="/Dispatch/to_admin_center_alluser">· 用户信息</a></li>
+            <li><a href="/Dispatch/to_admin_center_alluser" class="active">· 用户信息</a></li>
             <li><a href="/Dispatch/to_admin_center_allvegetable">· 蔬菜信息</a></li>
         </ul>
     </div>
-</div>
-
-
-<%
-    List<User> alluser = new OperateUser().getAllUser();
-%>
-
-<div class="right_content clearfix">
-    <input type="text" id="lin" placeholder="请输入需要搜索的内容">
-    <table id="table-1" cellspacing='0' border="1" style="text-align: center;">
-        <tr>
-            <th>用户名</th>
-            <th>密码</th>
-            <th>电话</th>
-            <th>地址</th>
-            <th>密保问题</th>
-            <th>答案</th>
-        </tr>
-        <%
-            for (int i = 0; i < alluser.size(); i++) {
-                User user = alluser.get(i);%>
-                <form action="/Dispatch/to_alter_admin_info">
-                    <input type="hidden" name="username" value="<%=user.getName()%>">
-                    <input type="hidden" name="password" value="<%=user.getPassword()%>">
-                    <input type="hidden" name="phone" value="<%=user.getPhone()%>">
+    <div class="right_content clearfix">
+        <input type="text" id="lin" class="admin_search_user" placeholder="请输入需要搜索的内容">
+        <table id="table-1" cellspacing='0' border="1" class="order_list_table w980">
+            <tr>
+                <th>用户名</th>
+                <th>密码</th>
+                <th>电话</th>
+                <th>地址</th>
+                <th>密保问题</th>
+                <th>答案</th>
+            </tr>
+            <%
+                for (int i = 0; i < alluser.size(); i++) {
+                    User user = alluser.get(i);%>
+            <form action="/Dispatch/to_admin_alter_user" method="post">
+                <input type="hidden" name="altered_username" value="<%=user.getName()%>">
                 <tr>
                     <td><%=user.getName()%></td>
                     <td><%=user.getPassword()%></td>
@@ -83,13 +76,19 @@
                     <td><%=user.getAddress()%></td>
                     <td><%=user.getTooltips()%></td>
                     <td><%=user.getAnswer()%></td>
-                    <td><button type="submit" id="searchuser" name="searchuser">修改信息</button></td>
+                    <td><button type="submit" id="searchuser" name="searchuser">修改</button></td>
                 </tr>
-                </form>
-        <%}
-        %>
-    </table>
+            </form>
+            <%}
+            %>
+        </table>
+    </div>
 </div>
+
+
+
+
+
 <script type="text/javascript">
     var table = document.getElementById("table-1");
     var input = document.getElementById("lin")

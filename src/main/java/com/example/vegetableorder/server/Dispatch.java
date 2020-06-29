@@ -129,9 +129,14 @@ public class Dispatch {
             return "admin_center_alluser";
     }
 
-
-
-
+    @RequestMapping("/to_admin_alter_user")
+    public String to_admin_alter_user(HttpSession session, HttpServletRequest request){
+        String adminname = (String) session.getAttribute("adminname");
+        if(notlogin(adminname, "请先登录", "tologin", request))
+            return "ErroePage";
+        else
+            return "admin_alter_user";
+    }
 
 
 

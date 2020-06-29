@@ -466,7 +466,7 @@ html,body{height:100%}
 	width:1200px;
 	border-collapse:collapse;
 	border-spacing:0px;
-	border:1px solid #ddd;
+	border:1px solid #666;
 	margin:-1px auto 0;
 }
 
@@ -483,6 +483,7 @@ html,body{height:100%}
 .order_goods_list .col02 em{color:#999;margin-left:10px}
 .order_goods_list .col03{width:10%}
 .order_goods_list .col04{width:20%}
+.admin_search_user{margin: 0px auto 20px 10px;padding: 0;width: 300px;height: 32px;border-color: #37ab40;border-radius: 3px}
 
 .oper_btn{display:inline-block;border:1px solid #ddd;color:#666;padding:5px 10px}
 
