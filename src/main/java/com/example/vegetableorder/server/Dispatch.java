@@ -80,6 +80,19 @@ public class Dispatch {
             return "alter_user_info";
     }
 
+    @RequestMapping("/to_alter_address")
+    public String to_alter_address(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+        String username = (String) session.getAttribute("username");
+        if(username==null|| username.equals("")){
+            request.setAttribute("error","你还未登录，请去登录！" );
+            request.setAttribute("pagename","tologin" );
+            return "ErroePage";
+        }
+        else
+            return "alter_address";
+    }
+
+
 
 @RequestMapping("/to_cart")
     public String to_cart(HttpSession session, HttpServletRequest request){

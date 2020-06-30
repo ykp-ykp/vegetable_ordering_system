@@ -95,3 +95,12 @@ function checkall_admin(){
         return false;
     }
 }
+
+function checkall_phone() {
+    if (error_phone == false){
+        alert("修改成功");
+        return true;
+    }
+    else
+        return false;
+}

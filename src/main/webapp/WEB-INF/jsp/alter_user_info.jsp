@@ -47,6 +47,7 @@
             <li><a href="/Dispatch/to_user_center_info">· 个人信息</a></li>
             <li><a href="/Dispatch/to_user_center_order">· 全部订单</a></li>
             <li><a href="/Dispatch/to_alter_user_info" class="active">· 修改信息</a></li>
+            <li><a href="/Dispatch/to_alter_address">· 修改地址</a></li>
         </ul>
     </div>
     <div class="right_content clearfix">

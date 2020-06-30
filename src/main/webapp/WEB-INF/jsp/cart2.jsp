@@ -53,7 +53,7 @@
         <dt>寄送到：</dt>
         <dd><input type="radio" name="" checked=""><%=user.getAddress()%> （<%=user.getName()%> 收） <%=user.getPhone()%></dd>
     </dl>
-    <a href="/Dispatch/to_alter_user_info" class="edit_site">编辑收货地址</a>
+    <a href="/Dispatch/to_alter_address" class="edit_site">编辑收货地址</a>
 
 </div>
 

@@ -41,6 +41,16 @@ public class Alter {
         return "redirect:/Dispatch/tologin";
     }
 
+    @RequestMapping("/Alter_address")//再加上电话
+    public String Alter_address(HttpSession session, HttpServletRequest request){
+        String username = (String) session.getAttribute("username");
+        String address = request.getParameter("address");
+        String phone = request.getParameter("phone");
+        new OperateUser().alter_address(username,address,phone);
+        //修改地址之后让用户自动退出，并返回登录界面
+        return "redirect:/Dispatch/to_user_center_info";
+    }
+
     @RequestMapping("/Alteradmin")
     public String Alteradmin(HttpSession session, HttpServletRequest request){
         String adminname = (String) session.getAttribute("adminname");

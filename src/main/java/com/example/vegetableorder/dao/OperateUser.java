@@ -55,4 +55,8 @@ public class OperateUser {
         jdbcTemplate.update("update user set password = ?,phone = ?,address = ?,tooltips = ?,answer = ? where name=?",password,
                 phone,address,tooltips,answer,username);
     }
+
+    public void alter_address(String username,String address,String phone){
+        jdbcTemplate.update("update user set address = ?,phone = ? where name=?",address,phone,username);
+    }
 }

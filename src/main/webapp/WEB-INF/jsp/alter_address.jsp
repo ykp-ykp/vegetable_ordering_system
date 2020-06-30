@@ -1,9 +1,10 @@
 <%@ page import="com.example.vegetableorder.domain.User" %>
-<%@ page import="com.example.vegetableorder.dao.OperateUser" %><%--
+<%@ page import="com.example.vegetableorder.dao.OperateUser" %>
+<%--
   Created by IntelliJ IDEA.
   User: ASUS
-  Date: 2020/6/23
-  Time: 18:43
+  Date: 2020/6/28
+  Time: 10:40
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,6 +13,8 @@
     <title>天天生鲜-用户中心</title>
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <script type="text/javascript" src="/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="/js/alter_user_info.js"></script>
 </head>
 <body>
 <%
@@ -41,20 +44,33 @@
     <div class="left_menu_con clearfix">
         <h3>用户中心</h3>
         <ul>
-            <li><a href="/Dispatch/to_user_center_info" class="active">· 个人信息</a></li>
+            <li><a href="/Dispatch/to_user_center_info">· 个人信息</a></li>
             <li><a href="/Dispatch/to_user_center_order">· 全部订单</a></li>
             <li><a href="/Dispatch/to_alter_user_info">· 修改信息</a></li>
-            <li><a href="/Dispatch/to_alter_address">· 修改地址</a></li>
+            <li><a href="/Dispatch/to_alter_address" class="active">· 修改地址</a></li>
         </ul>
     </div>
     <div class="right_content clearfix">
         <div class="info_con clearfix">
             <h3 class="common_title2">基本信息</h3>
-            <ul class="user_info_list">
-                <li><span>用户名：</span><%=user.getName()%></li>
-                <li><span>手机号：</span><%=user.getPhone()%></li>
-                <li><span>地址：</span><%=user.getAddress()%></li>
-            </ul>
+            <form action="/Alter/Alter_address" onsubmit="return checkall_phone()">
+                <div class="reg_form clearfix">
+                    <ul>
+                        <li>
+                            <label>手机号:</label>
+                            <input type="text" name="phone" id="phone" value="<%=user.getPhone()%>">
+                            <span class="error_tip">提示信息</span>
+                        </li>
+                        <li>
+                            <label>地址:</label>
+                            <input type="text" name="address" id="address" value="<%=user.getAddress()%>">
+                        </li>
+                        <li class="reg_sub">
+                            <input type="submit"  value="提 交" name="submit" id="submit">
+                        </li>
+                    </ul>
+                </div>
+            </form>
         </div>
     </div>
 </div>
