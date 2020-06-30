@@ -169,9 +169,8 @@
 	<div class="r_wrap fr clearfix">
 		<ul class="detail_tab clearfix">
 			<li class="active">商品介绍</li>
-			<li>评论</li>
+			<li><a href="/Dispatch/to_see_remark">评论</a></li>
 		</ul>
-
 		<div class="tab_content">
 			<dl>
 				<dt>商品详情：</dt>

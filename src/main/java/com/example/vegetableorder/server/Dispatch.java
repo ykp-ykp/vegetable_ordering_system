@@ -182,7 +182,10 @@ public class Dispatch {
     }
 
 
-
+    @RequestMapping("/to_see_remark")
+    public String see_remark(HttpSession session, HttpServletRequest request){
+        return "vegetable_info_remarks";
+    }
 
 
 
