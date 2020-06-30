@@ -49,6 +49,7 @@
     </div>
     <div class="right_content clearfix">
         <input type="text" id="lin" class="admin_search_user" placeholder="请输入需要搜索的内容">
+        <a href="/Dispatch/to_add_vegetable" style="margin-left: 200px;font-size: 20px">添加蔬菜</a>
         <table id="table-1" cellspacing='0' border="1" class="order_list_table w980">
             <tr>
                 <th>蔬菜名</th>
@@ -60,7 +61,8 @@
             </tr>
             <%
                 for (int i = 0; i < allvegetables.size(); i++) {
-                    Vegetables vegetable = allvegetables.get(i);%>
+                    Vegetables vegetable = allvegetables.get(i);
+                   %>
             <form action="/Dispatch/to_admin_alter_vegetable" method="post">
                 <input type="hidden" name="altered_vegetablename" value="<%=vegetable.getName()%>">
                 <tr>
@@ -71,6 +73,7 @@
                     <td style="font-size: 10px"><%=vegetable.getIntroduction()%></td>
                     <td style="font-size: 10px"><%=vegetable.getImage()%></td>
                     <td><button type="submit" id="searchuser" name="searchuser">修改</button></td>
+                    <td><a href="/Alter/to_admine_delete_vegetable?vegetablename=<%=vegetable.getName()%>">删除</a></td>
                 </tr>
             </form>
             <%}

@@ -26,10 +26,10 @@ public class OperateVegetable {
         return jdbcTemplate.queryForObject("select * from vegetables where name = ?",new BeanPropertyRowMapper<>(Vegetables.class),name);
     }
 
-    public boolean Insert(Vegetables vegetables){
+    public boolean Insert(Vegetables vegetable){
         try {
-            jdbcTemplate.update("insert into vegetables VALUES (null,?,?,?,?,?,?)",vegetables.getName(),vegetables.getPrice(),vegetables.getDiscount(),
-                    vegetables.getImage(),vegetables.getSurplus(),vegetables.getIntroduction());
+            jdbcTemplate.update("insert into vegetables VALUES (null,?,?,?,?,?,?)",vegetable.getName(),vegetable.getPrice(),
+                    vegetable.getDiscount(),vegetable.getImage(),vegetable.getSurplus(),vegetable.getIntroduction());
         } catch (DataAccessException e) {
             e.printStackTrace();
             return false;
@@ -53,4 +53,5 @@ public class OperateVegetable {
         jdbcTemplate.update("update vegetables set price = ?,surplus = ? ,image = ?,introduction = ? where name=?",
                 price,surplus,image,introduction,name);
     }
+
 }

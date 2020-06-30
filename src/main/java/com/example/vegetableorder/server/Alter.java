@@ -3,6 +3,7 @@ package com.example.vegetableorder.server;
 import com.example.vegetableorder.dao.OperateAdmin;
 import com.example.vegetableorder.dao.OperateUser;
 import com.example.vegetableorder.dao.OperateVegetable;
+import com.example.vegetableorder.domain.Vegetables;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -69,6 +70,35 @@ public class Alter {
         //修改完之后返回管理员界面
         return "redirect:/Dispatch/to_admin_center_allvegetable";
     }
+
+    @RequestMapping("/to_add_vegetable")
+    public String add_vegetable(HttpSession session, HttpServletRequest request){
+        String vegetablename = request.getParameter("vegetablename");
+        double price = Double.parseDouble(request.getParameter("price"));
+        double surplus = Double.parseDouble(request.getParameter("surplus"));
+        String image = request.getParameter("image");
+        String introduction = request.getParameter("introduction");
+
+
+        System.out.println(vegetablename+"---"+price+"---"+ surplus+"---"+image+"---"+introduction);
+        Vegetables vegetable = new Vegetables(vegetablename,price,0.0,image,surplus,introduction);
+        new OperateVegetable().Insert(vegetable);
+
+        //添加完之后返回管理员界面
+        return "redirect:/Dispatch/to_admin_center_allvegetable";
+    }
+
+    @RequestMapping("/to_admine_delete_vegetable")
+    public String admine_delete_vegetable(HttpSession session, HttpServletRequest request){
+        String vegetablename = request.getParameter("vegetablename");
+        System.out.println(vegetablename);
+        new OperateVegetable().delete(vegetablename);
+
+        //删除之后返回管理员界面
+        return "redirect:/Dispatch/to_admin_center_allvegetable";
+    }
+
+
 
 
 }

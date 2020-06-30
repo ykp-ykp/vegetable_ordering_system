@@ -156,6 +156,16 @@ public class Dispatch {
             return "admin_alter_vegetable";
     }
 
+    @RequestMapping("/to_add_vegetable")
+    public String to_add_vegetable(HttpSession session, HttpServletRequest request){
+        String adminname = (String) session.getAttribute("adminname");
+        if(notlogin(adminname, "请先登录", "tologin", request))
+            return "ErroePage";
+        else
+            return "add_vegetable";
+    }
+
+
 
 
 

@@ -44,6 +44,10 @@ $(function(){
 
 
     //针对蔬菜的工能
+    $('#vegetablename').blur(function() {
+        check_vegetablename();
+    });
+
     $('#price').blur(function() {
         check_price();
     });
@@ -55,6 +59,21 @@ $(function(){
     $('#image').blur(function() {
         check_image();
     });
+
+    function check_vegetablename() {
+        var len = $('#vegetablename').val().length;
+        if(len<1||len>20)
+        {
+            $('#vegetablename').next().html('蔬菜名不能为空')
+            $('#vegetablename').next().show();
+            error_vegetablename = true;
+        }
+        else
+        {
+            $('#vegetablename').next().hide();
+            error_vegetablename = false;
+        }
+    }
 
     function check_price() {
         var price = $('#price').val();
@@ -205,6 +224,19 @@ function admin_alter_vegetable_checkall(){
     else
     {
         console.log("提交失败")
+        return false;
+    }
+}
+
+function add_vegetable_checkall(){
+    if(error_vegetablename == false && error_price == false && error_surplus == false && error_image == false)
+    {
+        alert("添加成功");
+        return true;
+    }
+    else
+    {
+        console.log("添加失败")
         return false;
     }
 }

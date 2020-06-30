@@ -12,6 +12,17 @@ public class Vegetables {
     private double surplus;
     private String introduction;
 
+    public Vegetables(){}
+
+    public Vegetables(String name, double price, double discount, String image, double surplus, String introduction) {
+        this.name = name;
+        this.price = price;
+        this.discount = discount;
+        this.image = image;
+        this.surplus = surplus;
+        this.introduction = introduction;
+    }
+
     public int getId() {
         return id;
     }
