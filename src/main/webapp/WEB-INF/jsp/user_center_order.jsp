@@ -100,6 +100,7 @@
                 <td width="15%"><%=order.getTotalprice()%>元</td>
                 <td width="15%">已付款</td>
                 <td width="15%"><a href="#" class="oper_btn">查看物流</a></td>
+                <td width="15%"><a href="/Dispatch/to_remark?vegetablename=<%=order.getVegetablename()%>&order_time=<%=order.getTime()%>" class="oper_btn">去评论</a></td>
             </tr>
         <%}
         }%>

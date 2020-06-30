@@ -93,6 +93,22 @@ public class Dispatch {
             return "cart2";
     }
 
+    @RequestMapping("/to_remark")
+    public String remark(HttpSession session, HttpServletRequest request){
+        String username = (String) session.getAttribute("username");
+        session.setAttribute("remark_vegetablename", request.getParameter("vegetablename"));
+        session.setAttribute("order_time", request.getParameter("order_time"));
+        System.out.println(request.getParameter("vegetablename")+"***********"+request.getParameter("order_time"));
+        if(username==null|| username.equals("")){
+            request.setAttribute("error","你还未登录，请去登录！" );
+            request.setAttribute("pagename","tologin" );
+            return "ErroePage";
+        }
+        else
+            return "remark";
+    }
+
+
     @RequestMapping("/to_admin_center_info")
     public String to_admin_center_info(HttpSession session, HttpServletRequest request){
         String adminname = (String) session.getAttribute("adminname");
@@ -164,7 +180,6 @@ public class Dispatch {
         else
             return "add_vegetable";
     }
-
 
 
 

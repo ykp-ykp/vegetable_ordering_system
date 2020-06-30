@@ -1,9 +1,11 @@
 package com.example.vegetableorder.server;
 
 import com.example.vegetableorder.dao.OperateOrders;
+import com.example.vegetableorder.dao.OperateRemark;
 import com.example.vegetableorder.dao.OperateUser;
 import com.example.vegetableorder.dao.OperateVegetable;
 import com.example.vegetableorder.domain.Orders;
+import com.example.vegetableorder.domain.Remark;
 import com.example.vegetableorder.domain.User;
 import com.example.vegetableorder.domain.Vegetables;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -110,7 +112,27 @@ public class Purchase {
                 operateVegetable.altersurplus(everyvegetablenameArray[i], surplus-Double.parseDouble(weight));
             }
         }
-
         return "redirect:/";
     }
+
+    @RequestMapping("remark")
+    public String remark(HttpSession session, HttpServletRequest request){
+        String username = (String) session.getAttribute("username");
+        String vegetablename = (String) session.getAttribute("remark_vegetablename");
+        String order_time = (String) session.getAttribute("order_time");
+        String content = request.getParameter("remark");
+
+        Date date = new Date();//获取当前的日期
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String remark_time = df.format(date);//获取String类型的时间
+
+        System.out.println(username+"--"+vegetablename+"--"+order_time+"--"+content+"--"+remark_time);
+        if(!content.equals("")){
+            //评论内容为空时，不添加
+            Remark remark = new Remark( username, vegetablename, remark_time, order_time, content);
+            new OperateRemark().insert(remark);
+        }
+        return "redirect:/Dispatch/to_user_center_order";
+    }
+
 }
