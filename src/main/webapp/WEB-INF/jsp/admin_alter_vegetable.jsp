@@ -33,7 +33,7 @@
             Vegetables vegetable = new OperateVegetable().getOneVeg(altered_vegetablename);
         %>
         <div class="reg_form clearfix">
-            <form action="/Alter/to_admin_alter_vegetable" method="post" onsubmit="return admin_alter_vegetable_checkall()" id="reg_form">
+            <form action="/Alter/to_admin_alter_vegetable" method="post" onsubmit="return admin_alter_vegetable_checkall()" id="reg_form" enctype="multipart/form-data">
                 <ul>
                     <li>
                         <label>蔬菜名:</label>
@@ -57,8 +57,10 @@
                     </li>
                     <li>
                         <label>图片地址:</label>
-                        <input type="text" name="image" id="image" value="<%=vegetable.getImage()%>" placeholder="<%=vegetable.getImage()%>">
-                        <span class="error_tip3">只能修改图片名称哦</span>
+                        <input type="file" name="file" id="file"/>
+                        <span class="error_tip">提示信息</span>
+                        <%--<input type="text" name="image" id="image" value="<%=vegetable.getImage()%>" placeholder="<%=vegetable.getImage()%>">
+                        <span class="error_tip3">只能修改图片名称哦</span>--%>
                     </li>
                     <li class="reg_sub">
                         <input type="submit"  value="确 定" name="submit" id="submit">

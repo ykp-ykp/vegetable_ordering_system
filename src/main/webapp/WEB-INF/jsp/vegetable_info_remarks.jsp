@@ -96,7 +96,7 @@
         //把要订购的蔬菜对象传到server层
         //request.setAttribute("vegetablename",vegetablename );
     %>
-    <div class="goods_detail_pic fl"><img src="<%=vegetable.getImage()%>"></div>
+    <div class="goods_detail_pic fl"><img src="<%=vegetable.getImage()%>" width="180px"></div>
 
     <div class="goods_detail_list fr">
         <h3>鲜美的<%=vegetable.getName()%></h3>
@@ -179,10 +179,15 @@
         <div class="tab_content">
             <dl>
                 <dt>商品评论：</dt>
+
                 <%
+                    if(remarkList.size()==0){%>
+                    <dd style="color: #c40000">暂无评论</dd>
+                <%}
+
                     for (int i = 0; i < remarkList.size(); i++) {
                         Remark remark = remarkList.get(i);%>
-                    <dd><%=remark.getUsername()%><span>||</span><%=remark.getContent()%></dd>
+                <dd><font color="#a52a2a"><%=remark.getUsername()%>：</font><%=remark.getContent()%></dd>
                 <% }
                 %>
 

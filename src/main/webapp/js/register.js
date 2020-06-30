@@ -102,22 +102,6 @@ $(function(){
             error_price = true;
         }
     }
-
-    function check_image() {
-        var image = $('#image').val();
-        if(image.indexOf("/images/goods/")>=0&&image.indexOf(".jpg")>=0){
-            $('#image').next().attr("class","error_tip3");
-            $('#image').next().html('只能修改图片名称哦')
-            $('#image').next().show();
-            error_image = false;
-        }
-        else {
-            $('#image').next().attr("class","error_tip");
-            $('#image').next().html('图片地址不正确')
-            $('#image').next().show();
-            error_image = true;
-        }
-    }
     //针对蔬菜的工能
 
 
@@ -215,8 +199,32 @@ function admin_alter_user_checkall(){
     }
 }
 
+//检查书否上传图片
+function check_image() {
+    var fileFlag = false;
+    $("input[name='file']").each(function(){
+        if($(this).val()!="") {
+            fileFlag = true;
+        }
+    });
+    if(!fileFlag) {
+        $('#file').next().attr("class","error_tip");
+        $('#file').next().html('未选择图片');
+        $('#file').next().show();
+        alert("请选择图片!");
+        return true
+    }
+    else{
+        $('#file').next().attr("class","error_tip3");
+        $('#file').next().html('已选择图片');
+        $('#file').next().show();
+        return false;
+    }
+}
+
 function admin_alter_vegetable_checkall(){
-    if(error_price == false && error_surplus == false && error_image == false)
+    var temp = check_image();
+    if(error_price == false && error_surplus == false && error_image ==false && temp == false)
     {
         alert("修改成功");
         return true;
@@ -229,7 +237,8 @@ function admin_alter_vegetable_checkall(){
 }
 
 function add_vegetable_checkall(){
-    if(error_vegetablename == false && error_price == false && error_surplus == false && error_image == false)
+    var temp = check_image();
+    if(error_vegetablename == false && error_price == false && error_surplus == false && error_image ==false && temp == false)
     {
         alert("添加成功");
         return true;

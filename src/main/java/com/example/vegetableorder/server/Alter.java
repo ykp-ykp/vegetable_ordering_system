@@ -5,13 +5,26 @@ import com.example.vegetableorder.dao.OperateUser;
 import com.example.vegetableorder.dao.OperateVegetable;
 import com.example.vegetableorder.domain.Vegetables;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.context.MessageSource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.Locale;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 @org.springframework.stereotype.Controller
 @RequestMapping("/Alter")
 public class Alter {
+
+    private MessageSource messageSource;
+    @Autowired
+    public void setMessageSource(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     @RequestMapping("/Alteruser")
     public String Alteruser(HttpSession session, HttpServletRequest request){
@@ -56,14 +69,20 @@ public class Alter {
     }
 
     @RequestMapping("/to_admin_alter_vegetable")
-    public String admin_alter_vegetable(HttpSession session, HttpServletRequest request){
+    public String admin_alter_vegetable(MultipartFile file, RedirectAttributes redirectAttributes, Locale locale, HttpServletRequest request){
         String vegetablename = request.getParameter("vegetablename");
         double price = Double.parseDouble(request.getParameter("price"));
         double surplus = Double.parseDouble(request.getParameter("surplus"));
-        String image = request.getParameter("image");
+        //String image = request.getParameter("image");
         String introduction = request.getParameter("introduction");
-
-
+        String image = "/images/goods/";
+        //
+        try {
+            image+=upload_image(file, redirectAttributes,locale ,request );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //
         System.out.println(vegetablename+"---"+price+"---"+ surplus+"---"+image+"---"+introduction);
         new OperateVegetable().alter(vegetablename,price,surplus,image,introduction);
 
@@ -72,14 +91,20 @@ public class Alter {
     }
 
     @RequestMapping("/to_add_vegetable")
-    public String add_vegetable(HttpSession session, HttpServletRequest request){
+    public String add_vegetable(MultipartFile file, RedirectAttributes redirectAttributes, Locale locale, HttpServletRequest request){
         String vegetablename = request.getParameter("vegetablename");
         double price = Double.parseDouble(request.getParameter("price"));
         double surplus = Double.parseDouble(request.getParameter("surplus"));
-        String image = request.getParameter("image");
+        //String image = request.getParameter("image");
         String introduction = request.getParameter("introduction");
-
-
+        String image = "/images/goods/";
+        //
+        try {
+            image+=upload_image(file, redirectAttributes,locale ,request );
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //
         System.out.println(vegetablename+"---"+price+"---"+ surplus+"---"+image+"---"+introduction);
         Vegetables vegetable = new Vegetables(vegetablename,price,0.0,image,surplus,introduction);
         new OperateVegetable().Insert(vegetable);
@@ -87,6 +112,28 @@ public class Alter {
         //添加完之后返回管理员界面
         return "redirect:/Dispatch/to_admin_center_allvegetable";
     }
+
+
+    //上传本地文件到/images/goods/目录下，并返回图片名称和后缀（如apple.jpg）
+    public String upload_image(MultipartFile file, RedirectAttributes redirectAttributes, Locale locale, HttpServletRequest request) throws IOException {
+        System.out.println("file: "+file);
+        if(file.isEmpty()){
+            redirectAttributes.addFlashAttribute("msg",messageSource.getMessage("file.empty",null,locale));
+        }
+        redirectAttributes.addFlashAttribute("name",file.getOriginalFilename());
+        /*String realPath=request.getServletContext().getRealPath("/WEB-INF/jsp/upload");*/
+        //将文件（图片上传到upload文件夹中）
+        String realPath=request.getServletContext().getRealPath("/images/goods");
+        File destFile=new File(realPath,file.getOriginalFilename());
+        // log.debug("{}",destFile);
+        if(!destFile.exists()){  //如果该目录下没有这个文件
+            //拷贝文件到指定目录
+            file.transferTo(destFile);
+        }
+        return file.getOriginalFilename();
+    }
+
+
 
     @RequestMapping("/to_admine_delete_vegetable")
     public String admine_delete_vegetable(HttpSession session, HttpServletRequest request){

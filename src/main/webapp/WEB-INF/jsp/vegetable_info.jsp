@@ -94,7 +94,7 @@
 		//把要订购的蔬菜对象传到server层
 		//request.setAttribute("vegetablename",vegetablename );
 	%>
-	<div class="goods_detail_pic fl"><img src="<%=vegetable.getImage()%>"></div>
+	<div class="goods_detail_pic fl"><img src="<%=vegetable.getImage()%>" width="180px"></div>
 
 	<div class="goods_detail_list fr">
 		<h3>鲜美的<%=vegetable.getName()%></h3>

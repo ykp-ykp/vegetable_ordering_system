@@ -28,7 +28,7 @@
             <h1>添加蔬菜</h1>
         </div>
         <div class="reg_form clearfix">
-            <form action="/Alter/to_add_vegetable" method="post" onsubmit="return add_vegetable_checkall()" id="reg_form">
+            <form action="/Alter/to_add_vegetable" method="post" onsubmit="return add_vegetable_checkall()" id="reg_form" enctype="multipart/form-data">
                 <ul>
                     <li>
                         <label>蔬菜名:</label>
@@ -52,8 +52,10 @@
                     </li>
                     <li>
                         <label>图片地址:</label>
-                        <input type="text" name="image" id="image" value="/images/goods/图片名.jpg" placeholder="">
-                        <span class="error_tip3">只能修改图片名称哦</span>
+                        <input type="file" name="file" id="file"/>
+                        <span class="error_tip">提示信息</span>
+                        <%--<input type="text" name="image" id="image" value="/images/goods/图片名.jpg" placeholder="">
+                        <span class="error_tip3">只能修改图片名称哦</span>--%>
                     </li>
                     <li class="reg_sub">
                         <input type="submit"  value="确 定" name="submit" id="submit">
