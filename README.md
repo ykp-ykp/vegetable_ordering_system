@@ -8,7 +8,8 @@
 
 
 #### 安装教程
-
+前提保证本机已经安装好了idea、gradle、mysql，并且配置好gradle。注意连接数据库的数据库名和密码更改成为自己的（在resources目录下的applicationContext.xml里面）。
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0702/155553_2af16040_5674622.png "屏幕截图.png")
 
 #### 使用说明
 
