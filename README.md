@@ -10,7 +10,7 @@
 #### 安装教程
 前提保证本机已经安装好了idea、gradle、mysql，并且配置好gradle。注意连接数据库的数据库名和密码更改成为自己的（在resources目录下的applicationContext.xml里面）。
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0702/155553_2af16040_5674622.png "屏幕截图.png")
-
+按上图所示选择文件build.gradle打开方式选择idea，然后选中图中标的，下一步直到完成，等待项目加载即可。
 #### 使用说明
 
 使用BootRun启动项目，在浏览器访问http://localhost:8080
