@@ -1,4 +1,4 @@
-package com.example.vegetableorder.server;
+package com.example.vegetableorder.service;
 
 import com.example.vegetableorder.dao.OperateAdmin;
 import com.example.vegetableorder.dao.OperateUser;
@@ -47,7 +47,7 @@ public class Alter {
         String address = request.getParameter("address");
         String phone = request.getParameter("phone");
         new OperateUser().alter_address(username,address,phone);
-        //修改地址之后让用户自动退出，并返回登录界面
+        //修改地址返回个人信息界面
         return "redirect:/Dispatch/to_user_center_info";
     }
 
@@ -64,7 +64,7 @@ public class Alter {
     }
 
     @RequestMapping("/to_admin_alter_user")
-    public String admin_alter_user(HttpSession session, HttpServletRequest request){
+    public String admin_alter_user(HttpServletRequest request){
         String username = request.getParameter("username");
         String password = request.getParameter("pwd");
         String address = request.getParameter("address");
@@ -146,7 +146,7 @@ public class Alter {
 
 
     @RequestMapping("/to_admine_delete_vegetable")
-    public String admine_delete_vegetable(HttpSession session, HttpServletRequest request){
+    public String admine_delete_vegetable(HttpServletRequest request){
         String vegetablename = request.getParameter("vegetablename");
         System.out.println(vegetablename);
         new OperateVegetable().delete(vegetablename);

@@ -1,6 +1,5 @@
-package com.example.vegetableorder.server;
+package com.example.vegetableorder.Action;
 
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

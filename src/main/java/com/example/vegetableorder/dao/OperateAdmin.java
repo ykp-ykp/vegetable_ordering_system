@@ -1,8 +1,6 @@
 package com.example.vegetableorder.dao;
 
 import com.example.vegetableorder.domain.Administrator;
-import com.example.vegetableorder.domain.User;
-import com.example.vegetableorder.domain.Vegetables;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataAccessException;

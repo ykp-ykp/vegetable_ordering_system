@@ -54,6 +54,8 @@
                 <li><span>用户名：</span><%=user.getName()%></li>
                 <li><span>手机号：</span><%=user.getPhone()%></li>
                 <li><span>地址：</span><%=user.getAddress()%></li>
+                <li><span>密保问题：</span><%=user.getTooltips()%></li>
+                <li><span>答案：</span><%=user.getAnswer()%></li>
             </ul>
         </div>
     </div>

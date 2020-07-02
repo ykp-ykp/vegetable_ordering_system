@@ -61,7 +61,6 @@ function Search(objId, inputId) {
       $('#content-null').remove();
     };
 
-
   }
 
   // 初始化，判断需要搜索标签的类型

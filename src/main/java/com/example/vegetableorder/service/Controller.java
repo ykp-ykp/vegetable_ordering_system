@@ -1,4 +1,4 @@
-package com.example.vegetableorder.server;
+package com.example.vegetableorder.service;
 
 import com.example.vegetableorder.dao.OperateAdmin;
 import com.example.vegetableorder.dao.OperateUser;
@@ -15,7 +15,7 @@ public class Controller {
     OperateAdmin operateAdmin = new OperateAdmin();
 
     @RequestMapping("/tologin")
-    public String User_Login(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+    public String User_Login(HttpSession session, HttpServletRequest request){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         session.setMaxInactiveInterval(600);

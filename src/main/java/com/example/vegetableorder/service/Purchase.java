@@ -1,4 +1,4 @@
-package com.example.vegetableorder.server;
+package com.example.vegetableorder.service;
 
 import com.example.vegetableorder.dao.OperateOrders;
 import com.example.vegetableorder.dao.OperateRemark;
@@ -75,7 +75,7 @@ public class Purchase {
     }
 
     @RequestMapping("/DeleteOrders")
-    public String DeleteOrders(HttpSession session, HttpServletRequest request){
+    public String DeleteOrders(HttpServletRequest request){
         String username = request.getParameter("username");
         String vegetablename = request.getParameter("vegetablename");
         String time = request.getParameter("time");

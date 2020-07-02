@@ -64,7 +64,7 @@
 <div class="search_bar clearfix">
 	<a href="/" class="logo fl"><img src="/images/logo.png"></a>
 	<div class="guest_cart fr">
-		<a href="cart.html" class="cart_name fl">我的购物车</a>
+		<a href="/Dispatch/to_cart" class="cart_name fl">我的购物车</a>
 		<div class="goods_count fl" id="show_count">1</div>
 	</div>
 </div>

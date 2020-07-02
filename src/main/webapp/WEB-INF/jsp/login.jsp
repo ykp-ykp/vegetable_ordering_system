@@ -37,7 +37,6 @@
                         <a href="#">忘记密码</a><br>
                         <input type="checkbox" name="admin" value="isadmin"/>
                         <label>我是管理员</label>
-
                     </div>
                     <input type="submit" name="" value="登录" class="input_submit">
                 </form>
